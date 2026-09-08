@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Vendored upstream checkout (scripts/setup_env.sh re-clones this at a pinned commit --
+# not tracked here so we don't duplicate someone else's repo history in ours).
+external/
+
+# Downloaded artifacts: lens checkpoints, bank copies, HF cache. Re-fetched by
+# scripts/download_artifacts.py; sha256'd into provenance.json rather than committed.
+data/
+
+# Per-run outputs (parquet rows, gate/behavioral reports, plots, markdown reports).
+# provenance.json at the repo root is the one exception -- see provenance.py.
+runs/

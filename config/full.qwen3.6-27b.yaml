@@ -1,0 +1,87 @@
+# Full-tier config: the headline run, on rented 80GB-class hardware.
+# Everything below differs from config/smoke.qwen3.5-0.8b.yaml ONLY in the `model`, `lens`,
+# and `bank.n_items` fields -- switching tiers is meant to be exactly this, a config edit.
+run:
+  tier: full
+  seed: 0
+
+model:
+  hf_repo: "Qwen/Qwen3.6-27B"
+  revision: "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9"
+  dtype: "bfloat16"        # HARD CONSTRAINT: never quantised. model_io.py asserts this at load time.
+  device: "auto"
+  trust_remote_code: false
+  auto_class: "auto"
+  chat_template:
+    enable_thinking: false
+
+gate:
+  identity_argmax_threshold: 0.85
+  identity_kl_threshold_nats: 0.5
+  # Carried over from the smoke-tier value validated on Qwen3.5-0.8B (see that config's
+  # comment + gate.py's CALIBRATION_PROMPTS comment for the 2026-09-03 sweep). Not yet
+  # independently verified on the 27B -- if Stage B's report shows a similarly clean,
+  # stable plateau at a different cutoff for the 27B, that's expected (this number is about
+  # "how confident is confident enough" for THIS model's own logits) and should be updated
+  # here with the same non-circular methodology (select by model entropy alone, check the
+  # cutoff is a stable plateau over enough samples), not loosened to force a pass.
+  identity_max_entropy_nats: 0.75
+  identity_min_samples: 30
+  early_layer_fraction: 0.3333
+
+lens:
+  repo: "neuronpedia/jacobian-lens"
+  revision: "0731326edff4ae730ffc5356fe1a4728c748b3a6"
+  filename: "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"
+  layers: null
+
+bank:
+  hf_dataset: "camilablank/workspace-bench"
+  hf_dataset_revision: "4d2268589ec56dbe4024598deb0480828e59f85e"
+  git_repo: "camilablank/workspace-bench"
+  git_commit: "84e3a2d67a2517d28891f9b6153863ec4bd6c825"
+  family: "typo"
+  path: "baseline_evals/single_token/lens-eval-typo.json"
+  n_items: null       # full tier: all 100 frozen items
+  eval_render: "plain"
+  read_position: { kind: "final_prompt_token", offsets: [-1] }
+  scored_field: "intermediates"
+  permutation_chance_ref: 55.0
+
+stage_c_behavioral:
+  enabled: true
+  chat_enable_thinking: false
+  verification_template: |
+    {prompt}
+
+    What word was misspelled, and what should it be?
+  n_trials: 10
+  temperature: 0.7
+  pass_threshold: 8   # matches upstream behavioral gate literally: >=8/10 correct at temp 0.7
+
+controls:
+  logit_lens: true
+  next_token_dominance: true
+  null_control: "permutation"
+  permutation:
+    n_donors: 20
+    seed: 0
+
+scoring:
+  primary_metric: "harmonic_mean_rank"
+  pass_at_k: [1, 5, 10]
+  chance_multiple_required: 3.0           # house rule: pass_rate must exceed 3x chance to "work"
+  # Workspace band, on the paper's own 0-100 rescaled-depth axis (transformer-circuits.pub/
+  # 2026/workspace): "an early block ~ the first third, a long middle block [the workspace],
+  # and a small late block"; onset ~33% depth, conclusion ~92% depth (kurtosis/
+  # autocorrelation/dimensionality convergent measures). NOT the same as the "3x chance"
+  # rule above, which is workspace-bench's own house rule, not from the paper. Converted to
+  # raw layer indices only at the plotting boundary (report.py), per section 6.
+  workspace_band_pct: [33, 92]
+
+jlens_pkg:
+  git_repo: "anthropics/jacobian-lens"
+  git_commit: "581d398613e5602a5af361e1c34d3a92ea82ba8e"
+
+output:
+  run_dir: "runs/{run_id}"

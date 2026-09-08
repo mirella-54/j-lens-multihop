@@ -1,0 +1,106 @@
+# Smoke-tier config: runs the full pipeline locally on Qwen3.5-0.8B.
+#
+# Why Qwen3.5-0.8B and not Qwen3-4B (the other "small lens" the artifact table offers):
+# Qwen/Qwen3-4B is a plain `Qwen3ForCausalLM` (uniform full attention, text-only) -- a
+# structurally DIFFERENT architecture from Qwen3.6-27B. Qwen/Qwen3.5-0.8B is a
+# `Qwen3_5ForConditionalGeneration` with the same hybrid layer_types pattern as the 27B
+# (3 linear_attention : 1 full_attention, checked against both models' config.json on
+# 2026-09-03) and the same multimodal wrapper class. It is the only small model that
+# actually exercises the hook-placement risk flagged in the brief (section 6, bullet 2)
+# -- Qwen3-4B would validate hooks on an architecture the 27B doesn't have.
+run:
+  tier: smoke
+  seed: 0
+
+model:
+  hf_repo: "Qwen/Qwen3.5-0.8B"
+  revision: "2fc06364715b967f1860aea9cf38778875588b17"
+  dtype: "bfloat16"
+  device: "auto"          # cuda > mps > cpu, first available; logged into provenance.json
+  trust_remote_code: false
+  auto_class: "auto"      # try AutoModelForCausalLM first, fall back to AutoModelForImageTextToText
+                           # -- Qwen3_5ForConditionalGeneration's correct HF auto-class is unconfirmed
+                           # until Stage B actually loads it. See gate.py TODO.
+  chat_template:
+    enable_thinking: false   # bench default; used ONLY for the Stage C verification prompt below.
+                             # The typo family's own eval read (Stage D) uses eval_render: "plain"
+                             # with NO chat template at all -- see bank.eval_render.
+
+# Stage B lens-sanity thresholds -- sanity-checking the LENS FIT, unrelated to the typo
+# bank (see gate.py / config.py GateConfig docstring). Only identity_* gate the pipeline;
+# monotonicity and early-layer noise are reported, not blocking, per the brief.
+gate:
+  identity_argmax_threshold: 0.85     # min argmax(lens) == argmax(model) rate, low-entropy subset
+  identity_kl_threshold_nats: 0.5     # max mean KL(model || lens), same subset
+  # 0.75 nats, not the first guess of 2.0: a 2026-09-03 sweep (see gate.py's
+  # CALIBRATION_PROMPTS comment) found agreement decays smoothly from ~94% at low entropy
+  # to ~43% unfiltered, and confirmed on a 32-prompt/982-position set that ~0.5-0.75 nats is
+  # a stable plateau, not a small-sample fluke (an earlier 9-sample read at this same
+  # cutoff spuriously showed ~100%). 0.75 clears identity_min_samples with room to spare.
+  identity_max_entropy_nats: 0.75
+  identity_min_samples: 30            # fail loudly rather than pass on a tiny lucky subset
+  early_layer_fraction: 0.3333
+
+lens:
+  repo: "neuronpedia/jacobian-lens"
+  revision: "0731326edff4ae730ffc5356fe1a4728c748b3a6"
+  filename: "qwen3.5-0.8b/jlens/Salesforce-wikitext/Qwen3.5-0.8B_jacobian_lens.pt"
+  # Layers to read out at eval time. null = every layer the lens was fitted at
+  # (lens.source_layers, raw 0-indexed transformer block numbers -- NOT the paper's 0-100%
+  # depth rescaling; that conversion happens only at the plotting boundary, per section 6).
+  layers: null
+
+bank:
+  hf_dataset: "camilablank/workspace-bench"
+  hf_dataset_revision: "4d2268589ec56dbe4024598deb0480828e59f85e"
+  git_repo: "camilablank/workspace-bench"          # runner + scorer (do not reimplement scoring)
+  git_commit: "84e3a2d67a2517d28891f9b6153863ec4bd6c825"
+  family: "typo"
+  path: "baseline_evals/single_token/lens-eval-typo.json"
+  n_items: 8            # smoke tier: a handful of items, not all 100
+  # Taken verbatim from baseline_evals/single_token/README.md -- not our choice.
+  eval_render: "plain"                       # no chat template for the eval read
+  read_position: { kind: "final_prompt_token", offsets: [-1] }
+  scored_field: "intermediates"               # index 0 is the scored string, per bank README
+  permutation_chance_ref: 55.0                # typo family's published x-chance calibration (informational)
+
+stage_c_behavioral:
+  enabled: true
+  # The bank's own gate ("gate_variant": "family_chat", >=8/10 @ temp 0.7) is not published
+  # verbatim anywhere in the repo/dataset we could find -- only the pass bar. This prompt is
+  # OUR OWN design choice, explicitly logged rather than silently invented. See README.md.
+  chat_enable_thinking: false
+  verification_template: |
+    {prompt}
+
+    What word was misspelled, and what should it be?
+  n_trials: 10
+  temperature: 0.7
+  pass_threshold: 8   # matches upstream behavioral gate literally: >=8/10 correct at temp 0.7
+
+controls:
+  logit_lens: true              # lens.apply(..., use_jacobian=False) at the same layers/positions
+  next_token_dominance: true    # derived from Stage D ranks; no extra generation needed
+  null_control: "permutation"           # see README.md "Null control" for why R-lens was rejected
+  permutation:
+    n_donors: 20                # matches the bank's own permutation_chance methodology
+    seed: 0
+
+scoring:
+  primary_metric: "harmonic_mean_rank"    # == 1/MRR, reported as a per-layer curve
+  pass_at_k: [1, 5, 10]
+  chance_multiple_required: 3.0           # house rule: pass_rate must exceed 3x chance to "work"
+  # Workspace band, on the paper's own 0-100 rescaled-depth axis (transformer-circuits.pub/
+  # 2026/workspace): "an early block ~ the first third, a long middle block [the workspace],
+  # and a small late block"; onset ~33% depth, conclusion ~92% depth (kurtosis/
+  # autocorrelation/dimensionality convergent measures). NOT the same as the "3x chance"
+  # rule above, which is workspace-bench's own house rule, not from the paper. Converted to
+  # raw layer indices only at the plotting boundary (report.py), per section 6.
+  workspace_band_pct: [33, 92]
+
+jlens_pkg:
+  git_repo: "anthropics/jacobian-lens"
+  git_commit: "581d398613e5602a5af361e1c34d3a92ea82ba8e"
+
+output:
+  run_dir: "runs/{run_id}"
