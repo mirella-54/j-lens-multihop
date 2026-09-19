@@ -1,0 +1,602 @@
+{
+  "atomic-26-symbol": {
+    "category": "element:chemical_symbol",
+    "swap_target_word": "gold",
+    "swap_target_answer_word": "Au",
+    "swap_target_source_item": "atomic-79-symbol"
+  },
+  "atomic-79-symbol": {
+    "category": "element:chemical_symbol",
+    "swap_target_word": "iron",
+    "swap_target_answer_word": "Fe",
+    "swap_target_source_item": "atomic-26-symbol"
+  },
+  "birthstone-emerald-month": {
+    "category": "month:month_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "chem-bones-Z": {
+    "category": "element:atomic_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "chem-organic-Z": {
+    "category": "element:atomic_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "chem-photosynthesis-Z": {
+    "category": "element:atomic_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "dbl-altitude-antonym": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "double-dice-faces": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "etym-caesar-monthnum": {
+    "category": "month:month_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "firstletter-valentines-month": {
+    "category": "month:first_letter",
+    "swap_target_word": "October",
+    "swap_target_answer_word": "O",
+    "swap_target_source_item": "firstletter-halloween-month"
+  },
+  "func-filters-count": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "func-pumps-chambers": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "half-clock-hours": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "holiday-christmas-monthnum": {
+    "category": "month:month_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "holiday-halloween-monthnum": {
+    "category": "month:month_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "holiday-independence-monthnum": {
+    "category": "month:month_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "holiday-valentines-monthnum": {
+    "category": "month:month_number",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "inv-antarctica-opposite": {
+    "category": "cardinal_direction:opposite",
+    "swap_target_word": "east",
+    "swap_target_answer_word": "west",
+    "swap_target_source_item": "inv-sunrise-opposite"
+  },
+  "inv-roots-opposite": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "inv-sunrise-opposite": {
+    "category": "cardinal_direction:opposite",
+    "swap_target_word": "south",
+    "swap_target_answer_word": "north",
+    "swap_target_source_item": "inv-antarctica-opposite"
+  },
+  "month-7-namedafter": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "nhop-cube-element": {
+    "category": "atomic_number:element",
+    "swap_target_word": "7",
+    "swap_target_answer_word": "nitrogen",
+    "swap_target_source_item": "nhop-rainbow-element"
+  },
+  "nhop-rainbow-element": {
+    "category": "atomic_number:element",
+    "swap_target_word": "8",
+    "swap_target_answer_word": "oxygen",
+    "swap_target_source_item": "nhop-spider-element"
+  },
+  "nhop-spider-element": {
+    "category": "atomic_number:element",
+    "swap_target_word": "7",
+    "swap_target_answer_word": "nitrogen",
+    "swap_target_source_item": "nhop-rainbow-element"
+  },
+  "pred-valentines-prevmonth": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "rhyme-tree-squared": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "spaceneedle-border": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "spider-legs": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "violin-strings": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-boot-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Scotland",
+    "swap_target_answer_word": "Edinburgh",
+    "swap_target_source_item": "b3-mh-kilts-capital"
+  },
+  "bf-bordeaux-fruit": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-christmas-season": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-eiffel-currency": {
+    "category": "country:currency",
+    "swap_target_word": "Japan",
+    "swap_target_answer_word": "yen",
+    "swap_target_source_item": "b3-mh-fuji-currency"
+  },
+  "bf-fuji-ocean": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-giza-continent": {
+    "category": "country:continent",
+    "swap_target_word": "Italy",
+    "swap_target_answer_word": "Europe",
+    "swap_target_source_item": "b3-mh-pizza-continent"
+  },
+  "bf-kathmandu-mountain": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-madrid-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Russia",
+    "swap_target_answer_word": "Russian",
+    "swap_target_source_item": "b3-mh-kremlin-language"
+  },
+  "bf-moonwalk-firstname": {
+    "category": "person_surname:first_name",
+    "swap_target_word": "Einstein",
+    "swap_target_answer_word": "Albert",
+    "swap_target_source_item": "bf-relativity-firstname"
+  },
+  "bf-rio2016-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Greece",
+    "swap_target_answer_word": "Greek",
+    "swap_target_source_item": "bf-olympia-language"
+  },
+  "bf-southpole-bird": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-sphinx-river": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-stopsign-sides": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-sushi-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Sweden",
+    "swap_target_answer_word": "Stockholm",
+    "swap_target_source_item": "b3-mh-ikea-capital"
+  },
+  "bf-whitebear-ocean": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-acropolis-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Japan",
+    "swap_target_answer_word": "Tokyo",
+    "swap_target_source_item": "bf-sushi-capital"
+  },
+  "b3-mh-bakerstreet-city": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-blindpoet-epic": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-buenosaires-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Italy",
+    "swap_target_answer_word": "Italian",
+    "swap_target_source_item": "bf-colosseum-language"
+  },
+  "b3-mh-colosseum-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Denmark",
+    "swap_target_answer_word": "Copenhagen",
+    "swap_target_source_item": "b3-mh-lego-capital"
+  },
+  "b3-mh-cuckoo-mountains": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-eiffel-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Norway",
+    "swap_target_answer_word": "Oslo",
+    "swap_target_source_item": "b3-mh-fjords-capital"
+  },
+  "b3-mh-fjords-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Egypt",
+    "swap_target_answer_word": "Cairo",
+    "swap_target_source_item": "b3-mh-sphinx-capital"
+  },
+  "b3-mh-fuji-currency": {
+    "category": "country:currency",
+    "swap_target_word": "France",
+    "swap_target_answer_word": "euro",
+    "swap_target_source_item": "bf-eiffel-currency"
+  },
+  "b3-mh-goldengate-ocean": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-gravity-fruit": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-greatwall-river": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-guinness-capital": {
+    "category": "country:capital",
+    "swap_target_word": "France",
+    "swap_target_answer_word": "Paris",
+    "swap_target_source_item": "b3-mh-eiffel-capital"
+  },
+  "b3-mh-griffithobservatory-state": {
+    "category": "us_city:state",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-kangaroo-ocean": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-kilts-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Japan",
+    "swap_target_answer_word": "Tokyo",
+    "swap_target_source_item": "bf-sushi-capital"
+  },
+  "b3-mh-kiwi-capital": {
+    "category": "country:capital",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-kremlin-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Brazil",
+    "swap_target_answer_word": "Portuguese",
+    "swap_target_source_item": "bf-rio2016-language"
+  },
+  "b3-mh-liberty-river": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-lisbon-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Mexico",
+    "swap_target_answer_word": "Spanish",
+    "swap_target_source_item": "b3-mh-aztec-language"
+  },
+  "b3-mh-longestriver-sea": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-nokia-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Canada",
+    "swap_target_answer_word": "Ottawa",
+    "swap_target_source_item": "bf-mapleleaf-capital"
+  },
+  "b3-mh-samba-river": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-sphinx-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Norway",
+    "swap_target_answer_word": "Oslo",
+    "swap_target_source_item": "b3-mh-fjords-capital"
+  },
+  "b3-mh-tajmahal-river": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-tulips-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Scotland",
+    "swap_target_answer_word": "Edinburgh",
+    "swap_target_source_item": "b3-mh-kilts-capital"
+  },
+  "b3-mh-zeus-country": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "basketball-players": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "carnival-ocean": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "dual-stars-visible-opposite": {
+    "category": "time_of_day:opposite",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "firstletter-greatwall-country": {
+    "category": "country:first_letter",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "firstletter-halloween-month": {
+    "category": "month:first_letter",
+    "swap_target_word": "February",
+    "swap_target_answer_word": "F",
+    "swap_target_source_item": "firstletter-valentines-month"
+  },
+  "nhop-soccer-element": {
+    "category": "atomic_number:element",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "super-smallest-continent": {
+    "category": "country:continent",
+    "swap_target_word": "India",
+    "swap_target_answer_word": "Asia",
+    "swap_target_source_item": "bf-tajmahal-continent"
+  },
+  "bf-eiffel-continent": {
+    "category": "country:continent",
+    "swap_target_word": "India",
+    "swap_target_answer_word": "Asia",
+    "swap_target_source_item": "bf-tajmahal-continent"
+  },
+  "bf-kangaroo-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Norway",
+    "swap_target_answer_word": "Oslo",
+    "swap_target_source_item": "b3-mh-fjords-capital"
+  },
+  "bf-mapleleaf-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Egypt",
+    "swap_target_answer_word": "Cairo",
+    "swap_target_source_item": "b3-mh-sphinx-capital"
+  },
+  "bf-olympia-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Russia",
+    "swap_target_answer_word": "Russian",
+    "swap_target_source_item": "b3-mh-kremlin-language"
+  },
+  "b3-mh-ikea-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Egypt",
+    "swap_target_answer_word": "Cairo",
+    "swap_target_source_item": "b3-mh-sphinx-capital"
+  },
+  "b3-mh-lego-capital": {
+    "category": "country:capital",
+    "swap_target_word": "Finland",
+    "swap_target_answer_word": "Helsinki",
+    "swap_target_source_item": "b3-mh-nokia-capital"
+  },
+  "b3-mh-operahouse-country": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-pizza-continent": {
+    "category": "country:continent",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-redplanet-moons": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "b3-mh-tallest-continent": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "colosseum-currency": {
+    "category": "country:currency",
+    "swap_target_word": "Japan",
+    "swap_target_answer_word": "yen",
+    "swap_target_source_item": "b3-mh-fuji-currency"
+  },
+  "dbl-armistice-antonym": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "dual-photosynthesis-opposite": {
+    "category": "time_of_day:opposite",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "firstletter-populous-country": {
+    "category": "country:first_letter",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "roman-rings-olympic": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-colosseum-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Portugal",
+    "swap_target_answer_word": "Portuguese",
+    "swap_target_source_item": "b3-mh-lisbon-language"
+  },
+  "bf-greatwall-language": {
+    "category": "country:main_language",
+    "swap_target_word": "Spain",
+    "swap_target_answer_word": "Spanish",
+    "swap_target_source_item": "bf-madrid-language"
+  },
+  "bf-nile-desert": {
+    "category": "unannotated",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  },
+  "bf-relativity-firstname": {
+    "category": "person_surname:first_name",
+    "swap_target_word": "Armstrong",
+    "swap_target_answer_word": "Neil",
+    "swap_target_source_item": "bf-moonwalk-firstname"
+  },
+  "bf-tajmahal-continent": {
+    "category": "country:continent",
+    "swap_target_word": "Egypt",
+    "swap_target_answer_word": "Africa",
+    "swap_target_source_item": "bf-giza-continent"
+  },
+  "b3-mh-aztec-language": {
+    "category": "country:main_language",
+    "swap_target_word": "China",
+    "swap_target_answer_word": "Mandarin",
+    "swap_target_source_item": "bf-greatwall-language"
+  },
+  "b3-mh-windycity-state": {
+    "category": "us_city:state",
+    "swap_target_word": null,
+    "swap_target_answer_word": null,
+    "swap_target_source_item": null
+  }
+}

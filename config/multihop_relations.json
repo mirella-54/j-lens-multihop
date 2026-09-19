@@ -1,0 +1,706 @@
+{
+  "schema_version": 2,
+  "description": "Explicit relation annotations for counterfactual pairing, reviewed against each frozen prompt. These annotations are an adaptation, not claimed to be Nanda's original intervention pairs. Unannotated relations are excluded from causal comparisons, not from readout.",
+  "items": {
+    "atomic-26-symbol": {
+      "prompt": "Fact: The chemical symbol for the element with atomic number 26 is ",
+      "intermediate": "iron",
+      "answer": "Fe",
+      "relation": "element:chemical_symbol",
+      "exclusion_reason": null
+    },
+    "atomic-79-symbol": {
+      "prompt": "Fact: The chemical symbol for the element with atomic number 79 is ",
+      "intermediate": "gold",
+      "answer": "Au",
+      "relation": "element:chemical_symbol",
+      "exclusion_reason": null
+    },
+    "birthstone-emerald-month": {
+      "prompt": "Fact: Emerald is the birthstone for month number ",
+      "intermediate": "May",
+      "answer": "5",
+      "relation": "month:month_number",
+      "exclusion_reason": null
+    },
+    "chem-bones-Z": {
+      "prompt": "Fact: The atomic number of the metal most abundant in human bones is ",
+      "intermediate": "calcium",
+      "answer": "20",
+      "relation": "element:atomic_number",
+      "exclusion_reason": null
+    },
+    "chem-organic-Z": {
+      "prompt": "Fact: The atomic number of the element present in all organic compounds by definition is ",
+      "intermediate": "carbon",
+      "answer": "6",
+      "relation": "element:atomic_number",
+      "exclusion_reason": null
+    },
+    "chem-photosynthesis-Z": {
+      "prompt": "Fact: The atomic number of the gas that plants release during photosynthesis is ",
+      "intermediate": "oxygen",
+      "answer": "8",
+      "relation": "element:atomic_number",
+      "exclusion_reason": null
+    },
+    "dbl-altitude-antonym": {
+      "prompt": "Fact: The antonym of how you would describe an airplane's cruising altitude is \"",
+      "intermediate": "high",
+      "answer": "low",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "double-dice-faces": {
+      "prompt": "Fact: Double the number of faces on a standard die is ",
+      "intermediate": "6",
+      "answer": "12",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "etym-caesar-monthnum": {
+      "prompt": "Fact: The month named after Julius Caesar is month number ",
+      "intermediate": "July",
+      "answer": "7",
+      "relation": "month:month_number",
+      "exclusion_reason": null
+    },
+    "firstletter-valentines-month": {
+      "prompt": "Fact: The first letter of the month containing Valentine's Day is \"",
+      "intermediate": "February",
+      "answer": "F",
+      "relation": "month:first_letter",
+      "exclusion_reason": null
+    },
+    "func-filters-count": {
+      "prompt": "Fact: In humans, the number of organs that filter blood to make urine is ",
+      "intermediate": "kidney",
+      "answer": "2",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "func-pumps-chambers": {
+      "prompt": "Fact: In humans, the organ that pumps blood through the body has this many chambers: ",
+      "intermediate": "heart",
+      "answer": "4",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "half-clock-hours": {
+      "prompt": "Fact: Half the number of hours shown on a standard clock face is ",
+      "intermediate": "12",
+      "answer": "6",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "holiday-christmas-monthnum": {
+      "prompt": "Fact: Christmas Day is celebrated in month number ",
+      "intermediate": "December",
+      "answer": "12",
+      "relation": "month:month_number",
+      "exclusion_reason": null
+    },
+    "holiday-halloween-monthnum": {
+      "prompt": "Fact: Halloween is celebrated in month number ",
+      "intermediate": "October",
+      "answer": "10",
+      "relation": "month:month_number",
+      "exclusion_reason": null
+    },
+    "holiday-independence-monthnum": {
+      "prompt": "Fact: The US Independence Day holiday is celebrated in month number ",
+      "intermediate": "July",
+      "answer": "7",
+      "relation": "month:month_number",
+      "exclusion_reason": null
+    },
+    "holiday-valentines-monthnum": {
+      "prompt": "Fact: Valentine's Day is celebrated in month number ",
+      "intermediate": "February",
+      "answer": "2",
+      "relation": "month:month_number",
+      "exclusion_reason": null
+    },
+    "inv-antarctica-opposite": {
+      "prompt": "Fact: The cardinal direction opposite to where Antarctica lies from the equator is ",
+      "intermediate": "south",
+      "answer": "north",
+      "relation": "cardinal_direction:opposite",
+      "exclusion_reason": null
+    },
+    "inv-roots-opposite": {
+      "prompt": "Fact: The direction opposite to the one tree roots grow is \"",
+      "intermediate": "down",
+      "answer": "up",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "inv-sunrise-opposite": {
+      "prompt": "Fact: The cardinal direction opposite to the one where the sun rises is ",
+      "intermediate": "east",
+      "answer": "west",
+      "relation": "cardinal_direction:opposite",
+      "exclusion_reason": null
+    },
+    "month-7-namedafter": {
+      "prompt": "Fact: The seventh month of the year is named after the Roman leader Julius ",
+      "intermediate": "July",
+      "answer": "Caesar",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "nhop-cube-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the faces on a cube. The element at that position on the periodic table is ",
+      "intermediate": "6",
+      "answer": "carbon",
+      "relation": "atomic_number:element",
+      "exclusion_reason": null
+    },
+    "nhop-rainbow-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the colors in a rainbow. The element at that position on the periodic table is ",
+      "intermediate": "7",
+      "answer": "nitrogen",
+      "relation": "atomic_number:element",
+      "exclusion_reason": null
+    },
+    "nhop-spider-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the legs on a spider. The element at that position on the periodic table is ",
+      "intermediate": "8",
+      "answer": "oxygen",
+      "relation": "atomic_number:element",
+      "exclusion_reason": null
+    },
+    "pred-valentines-prevmonth": {
+      "prompt": "Fact: The month immediately before the one containing Valentine's Day is \"",
+      "intermediate": "February",
+      "answer": "January",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "rhyme-tree-squared": {
+      "prompt": "Fact: The square of the number whose name rhymes with tree is ",
+      "intermediate": "three",
+      "answer": "9",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "spaceneedle-border": {
+      "prompt": "Fact: The US state where the Space Needle is located shares its northern border with ",
+      "intermediate": "Seattle",
+      "answer": "Canada",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "spider-legs": {
+      "prompt": "Fact: The number of legs on the animal that spins webs is ",
+      "intermediate": "spider",
+      "answer": "8",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "violin-strings": {
+      "prompt": "Fact: The number of strings on the instrument that fiddlers play is ",
+      "intermediate": "violin",
+      "answer": "4",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-boot-capital": {
+      "prompt": "Fact: The capital of the European country shaped like a boot is",
+      "intermediate": "Italy",
+      "answer": "Rome",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "bf-bordeaux-fruit": {
+      "prompt": "Fact: The fruit fermented to make the drink Bordeaux is famous for is the",
+      "intermediate": "wine",
+      "answer": "grape",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-christmas-season": {
+      "prompt": "Fact: In the Northern Hemisphere, the season during the month of Christmas is",
+      "intermediate": "December",
+      "answer": "winter",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-eiffel-currency": {
+      "prompt": "Fact: The currency used in the country home to the Eiffel Tower is the",
+      "intermediate": "France",
+      "answer": "euro",
+      "relation": "country:currency",
+      "exclusion_reason": null
+    },
+    "bf-fuji-ocean": {
+      "prompt": "Fact: The ocean east of the country of Mount Fuji is the",
+      "intermediate": "Japan",
+      "answer": "Pacific",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-giza-continent": {
+      "prompt": "Fact: The continent containing the country famous for the pyramids of Giza is",
+      "intermediate": "Egypt",
+      "answer": "Africa",
+      "relation": "country:continent",
+      "exclusion_reason": null
+    },
+    "bf-kathmandu-mountain": {
+      "prompt": "Fact: The tallest mountain in the country whose capital is Kathmandu is",
+      "intermediate": "Nepal",
+      "answer": "Everest",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-madrid-language": {
+      "prompt": "Fact: The language spoken in the country whose capital is Madrid is",
+      "intermediate": "Spain",
+      "answer": "Spanish",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "bf-moonwalk-firstname": {
+      "prompt": "Fact: The first name of the first person to walk on the Moon is",
+      "intermediate": "Armstrong",
+      "answer": "Neil",
+      "relation": "person_surname:first_name",
+      "exclusion_reason": null
+    },
+    "bf-rio2016-language": {
+      "prompt": "Fact: The language of the country that hosted the 2016 Summer Olympics is",
+      "intermediate": "Brazil",
+      "answer": "Portuguese",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "bf-southpole-bird": {
+      "prompt": "Fact: The flightless bird living on the continent surrounding the South Pole is the",
+      "intermediate": "Antarctica",
+      "answer": "penguin",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-sphinx-river": {
+      "prompt": "Fact: The river flowing through the country of the Great Sphinx is the",
+      "intermediate": "Egypt",
+      "answer": "Nile",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-stopsign-sides": {
+      "prompt": "Fact: The number of sides on the shape of a standard stop sign is",
+      "intermediate": "octagon",
+      "answer": "8",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-sushi-capital": {
+      "prompt": "Fact: The capital city of the country where sushi originated is",
+      "intermediate": "Japan",
+      "answer": "Tokyo",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "bf-whitebear-ocean": {
+      "prompt": "Fact: The ocean where the white bear of the far north hunts is the",
+      "intermediate": "polar bear",
+      "answer": "Arctic",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-acropolis-capital": {
+      "prompt": "Fact: The capital of the country of the Acropolis is",
+      "intermediate": "Greece",
+      "answer": "Athens",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-bakerstreet-city": {
+      "prompt": "Fact: The home city of the detective of 221B Baker Street is",
+      "intermediate": "Sherlock Holmes",
+      "answer": "London",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-blindpoet-epic": {
+      "prompt": "Fact: The blind poet of the Odyssey also composed the",
+      "intermediate": "Homer",
+      "answer": "Iliad",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-buenosaires-language": {
+      "prompt": "Fact: The language of the country whose capital is Buenos Aires is",
+      "intermediate": "Argentina",
+      "answer": "Spanish",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "b3-mh-colosseum-capital": {
+      "prompt": "Fact: The capital of the country where the Colosseum stands is",
+      "intermediate": "Italy",
+      "answer": "Rome",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-cuckoo-mountains": {
+      "prompt": "Fact: The mountain range of the country famous for cuckoo clocks and neutrality is the",
+      "intermediate": "Switzerland",
+      "answer": "Alps",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-eiffel-capital": {
+      "prompt": "Fact: The capital of the country famous for the Eiffel Tower is",
+      "intermediate": "France",
+      "answer": "Paris",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-fjords-capital": {
+      "prompt": "Fact: The capital of the country famous for fjords is",
+      "intermediate": "Norway",
+      "answer": "Oslo",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-fuji-currency": {
+      "prompt": "Fact: The currency of the country of Mount Fuji is the",
+      "intermediate": "Japan",
+      "answer": "yen",
+      "relation": "country:currency",
+      "exclusion_reason": null
+    },
+    "b3-mh-goldengate-ocean": {
+      "prompt": "Fact: The ocean beside the city of the Golden Gate Bridge is the",
+      "intermediate": "San Francisco",
+      "answer": "Pacific",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-gravity-fruit": {
+      "prompt": "Fact: The fruit that famously fell in the story of gravity's discovery is the",
+      "intermediate": "Newton",
+      "answer": "apple",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-greatwall-river": {
+      "prompt": "Fact: The longest river of the country that built the Great Wall is the",
+      "intermediate": "China",
+      "answer": "Yangtze",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-guinness-capital": {
+      "prompt": "Fact: The capital of the country where Guinness is brewed is",
+      "intermediate": "Ireland",
+      "answer": "Dublin",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-griffithobservatory-state": {
+      "prompt": "Fact: The US state containing the Griffith Observatory is",
+      "intermediate": "Los Angeles",
+      "answer": "California",
+      "relation": "us_city:state",
+      "exclusion_reason": null
+    },
+    "b3-mh-kangaroo-ocean": {
+      "prompt": "Fact: The ocean between the kangaroo's home country and Africa is the",
+      "intermediate": "Australia",
+      "answer": "Indian",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-kilts-capital": {
+      "prompt": "Fact: The capital of the country famous for kilts and bagpipes is",
+      "intermediate": "Scotland",
+      "answer": "Edinburgh",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-kiwi-capital": {
+      "prompt": "Fact: The capital of the country whose people are nicknamed Kiwis is",
+      "intermediate": "New Zealand",
+      "answer": "Wellington",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-kremlin-language": {
+      "prompt": "Fact: The main language of the country where the Kremlin stands is",
+      "intermediate": "Russia",
+      "answer": "Russian",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "b3-mh-liberty-river": {
+      "prompt": "Fact: The river beside the island of the Statue of Liberty is the",
+      "intermediate": "New York",
+      "answer": "Hudson",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-lisbon-language": {
+      "prompt": "Fact: The language spoken in the country whose capital is Lisbon is",
+      "intermediate": "Portugal",
+      "answer": "Portuguese",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "b3-mh-longestriver-sea": {
+      "prompt": "Fact: The sea into which the world's longest river empties is the",
+      "intermediate": "Nile",
+      "answer": "Mediterranean",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-nokia-capital": {
+      "prompt": "Fact: The capital of the country where Nokia was founded is",
+      "intermediate": "Finland",
+      "answer": "Helsinki",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-samba-river": {
+      "prompt": "Fact: The great river of the country famous for samba and Carnival is the",
+      "intermediate": "Brazil",
+      "answer": "Amazon",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-sphinx-capital": {
+      "prompt": "Fact: The capital of the country of the Great Sphinx is",
+      "intermediate": "Egypt",
+      "answer": "Cairo",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-tajmahal-river": {
+      "prompt": "Fact: The sacred river of the country of the Taj Mahal is the",
+      "intermediate": "India",
+      "answer": "Ganges",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-tulips-capital": {
+      "prompt": "Fact: The capital of the country famous for tulips and windmills is",
+      "intermediate": "Netherlands",
+      "answer": "Amsterdam",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-zeus-country": {
+      "prompt": "Fact: The country of the mountain home of Zeus is",
+      "intermediate": "Olympus",
+      "answer": "Greece",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "basketball-players": {
+      "prompt": "Fact: The number of players per side in the sport invented in Springfield, Massachusetts is ",
+      "intermediate": "basketball",
+      "answer": "5",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "carnival-ocean": {
+      "prompt": "Fact: The ocean on the coast of the country where Carnival is most famously celebrated is the ",
+      "intermediate": "Brazil",
+      "answer": "Atlantic",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "dual-stars-visible-opposite": {
+      "prompt": "Fact: The opposite of the time of day when stars are visible is \"",
+      "intermediate": "night",
+      "answer": "day",
+      "relation": "time_of_day:opposite",
+      "exclusion_reason": null
+    },
+    "firstletter-greatwall-country": {
+      "prompt": "Fact: The first letter of the name of the country that built the Great Wall is ",
+      "intermediate": "China",
+      "answer": "C",
+      "relation": "country:first_letter",
+      "exclusion_reason": null
+    },
+    "firstletter-halloween-month": {
+      "prompt": "Fact: The first letter of the month containing Halloween is \"",
+      "intermediate": "October",
+      "answer": "O",
+      "relation": "month:first_letter",
+      "exclusion_reason": null
+    },
+    "nhop-soccer-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the players on a soccer team on the field. The element at that position on the periodic table is ",
+      "intermediate": "11",
+      "answer": "sodium",
+      "relation": "atomic_number:element",
+      "exclusion_reason": null
+    },
+    "super-smallest-continent": {
+      "prompt": "Fact: The smallest country in the world is located on the continent of ",
+      "intermediate": "Vatican",
+      "answer": "Europe",
+      "relation": "country:continent",
+      "exclusion_reason": null
+    },
+    "bf-eiffel-continent": {
+      "prompt": "Fact: The continent home to the country of the Eiffel Tower is",
+      "intermediate": "France",
+      "answer": "Europe",
+      "relation": "country:continent",
+      "exclusion_reason": null
+    },
+    "bf-kangaroo-capital": {
+      "prompt": "Fact: The capital of the country where the kangaroo is native is",
+      "intermediate": "Australia",
+      "answer": "Canberra",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "bf-mapleleaf-capital": {
+      "prompt": "Fact: The capital of the country whose flag features a red maple leaf is",
+      "intermediate": "Canada",
+      "answer": "Ottawa",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "bf-olympia-language": {
+      "prompt": "Fact: The language of the country where the ancient Olympic Games began is",
+      "intermediate": "Greece",
+      "answer": "Greek",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "b3-mh-ikea-capital": {
+      "prompt": "Fact: The capital of the country where IKEA was founded is",
+      "intermediate": "Sweden",
+      "answer": "Stockholm",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-lego-capital": {
+      "prompt": "Fact: The capital of the country where LEGO was invented is",
+      "intermediate": "Denmark",
+      "answer": "Copenhagen",
+      "relation": "country:capital",
+      "exclusion_reason": null
+    },
+    "b3-mh-operahouse-country": {
+      "prompt": "Fact: The country of the famous sail-shaped opera house is",
+      "intermediate": "Sydney",
+      "answer": "Australia",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-pizza-continent": {
+      "prompt": "Fact: The continent of the country where pizza originated is",
+      "intermediate": "Italy",
+      "answer": "Europe",
+      "relation": "country:continent",
+      "exclusion_reason": null
+    },
+    "b3-mh-redplanet-moons": {
+      "prompt": "Fact: The number of moons of the red planet is",
+      "intermediate": "Mars",
+      "answer": "2",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "b3-mh-tallest-continent": {
+      "prompt": "Fact: The continent of the world's tallest mountain is",
+      "intermediate": "Everest",
+      "answer": "Asia",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "colosseum-currency": {
+      "prompt": "Fact: The currency used in the country where the Colosseum stands is the ",
+      "intermediate": "Italy",
+      "answer": "Euro",
+      "relation": "country:currency",
+      "exclusion_reason": null
+    },
+    "dbl-armistice-antonym": {
+      "prompt": "Fact: The antonym of what an armistice ends is \"",
+      "intermediate": "war",
+      "answer": "peace",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "dual-photosynthesis-opposite": {
+      "prompt": "Fact: The opposite of the time when plants photosynthesize is \"",
+      "intermediate": "day",
+      "answer": "night",
+      "relation": "time_of_day:opposite",
+      "exclusion_reason": null
+    },
+    "firstletter-populous-country": {
+      "prompt": "Fact: The first letter of the name of the world's most populous country is ",
+      "intermediate": "China",
+      "answer": "C",
+      "relation": "country:first_letter",
+      "exclusion_reason": null
+    },
+    "roman-rings-olympic": {
+      "prompt": "Fact: Written as a Roman numeral, the number of Olympic rings is ",
+      "intermediate": "5",
+      "answer": "V",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-colosseum-language": {
+      "prompt": "Fact: The language spoken in the country where the Colosseum stands is",
+      "intermediate": "Italy",
+      "answer": "Italian",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "bf-greatwall-language": {
+      "prompt": "Fact: The most spoken language of the country that built the Great Wall is",
+      "intermediate": "China",
+      "answer": "Mandarin",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "bf-nile-desert": {
+      "prompt": "Fact: The largest hot desert, found on the continent where the Nile flows, is the",
+      "intermediate": "Africa",
+      "answer": "Sahara",
+      "relation": null,
+      "exclusion_reason": "No validated same-relation donor group; do not infer compatibility from filename suffix."
+    },
+    "bf-relativity-firstname": {
+      "prompt": "Fact: The first name of the scientist who developed the theory of general relativity is",
+      "intermediate": "Einstein",
+      "answer": "Albert",
+      "relation": "person_surname:first_name",
+      "exclusion_reason": null
+    },
+    "bf-tajmahal-continent": {
+      "prompt": "Fact: The continent where the country of the Taj Mahal lies is",
+      "intermediate": "India",
+      "answer": "Asia",
+      "relation": "country:continent",
+      "exclusion_reason": null
+    },
+    "b3-mh-aztec-language": {
+      "prompt": "Fact: The language spoken today in the country of the ancient Aztecs is",
+      "intermediate": "Mexico",
+      "answer": "Spanish",
+      "relation": "country:main_language",
+      "exclusion_reason": null
+    },
+    "b3-mh-windycity-state": {
+      "prompt": "Fact: The US state containing the city nicknamed the Windy City is",
+      "intermediate": "Chicago",
+      "answer": "Illinois",
+      "relation": "us_city:state",
+      "exclusion_reason": null
+    }
+  }
+}

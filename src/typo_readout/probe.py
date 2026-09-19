@@ -93,6 +93,149 @@ def probe_token_score(
     return score.item() if isinstance(score, torch.Tensor) else score
 
 
+def _rms_epsilon(norm) -> float:
+    """Only support RMS normalization; centered norms need a different derivation."""
+    if isinstance(norm, torch.nn.LayerNorm):
+        raise TypeError("Centered LayerNorm does not have a diagonal RMS gain")
+    if not hasattr(norm, "eps") and not hasattr(norm, "variance_epsilon"):
+        raise TypeError("The final norm must expose an RMSNorm epsilon")
+    eps = getattr(norm, "eps", getattr(norm, "variance_epsilon", None))
+    return float(eps) if eps is not None else torch.finfo(torch.float32).eps
+
+
+@torch.no_grad()
+def effective_rms_gain(norm, reference: torch.Tensor) -> torch.Tensor:
+    """Recover gain through the actual module, including Qwen's 1 + weight."""
+    eps = _rms_epsilon(norm)
+    ones = torch.ones_like(reference, dtype=torch.float32)
+    return norm(ones).float() * math.sqrt(1.0 + eps)
+
+
+def layer_local_unembed_vector(
+    lens_model: HFLensModel, lens: JacobianLens, token_id: int, layer: int,
+    *, use_gamma: bool = True,
+) -> torch.Tensor:
+    """The single source of truth for "the direction in RAW layer-`layer` residual space
+    that the lens's own readout uses to score `token_id`". Derived exactly from the
+    readout's own code path (`JacobianLens.transport` + `HFLensModel.unembed`):
+
+        readout score ~= w_token^T @ (gamma * transport(h, layer))
+                        = w_token^T @ (gamma * (J_layer @ h))
+                        = (J_layer^T @ (gamma * w_token))^T @ h
+
+    so `J_layer^T @ (gamma * w_token)` is the vector this function returns -- exact (no
+    RMSNorm-scalar approximation involved: the identity above holds before that division),
+    up to the fact that `gamma` (the final RMSNorm's elementwise weight) is dropped
+    entirely if the model's final norm has no learnable weight.
+
+    Existing solely because causal.py's coordinate swap (2026-09-09 bug, see
+    runs/causal-multihop-full/controls_report.md) used to build v_s/v_t from
+    `lm_head.weight[token_id]` directly -- a LAYER-INDEPENDENT vector that is only
+    basis-correct where `J_layer` happens to be close to the identity. Both the causal
+    swap and anything auditing it against "what the readout uses" MUST call this same
+    function, not reimplement the formula, so they can never drift apart again.
+
+    `use_gamma` (added 2026-09-10, spec-conformance task): the paper defines the J-lens
+    vectors themselves as "the rows of W_U J_ell" -- no gamma term. `use_gamma=False`
+    (the paper's literal definition, used as the PRIMARY variant from 2026-09-10 on) omits
+    the final-RMSNorm elementwise weight; `use_gamma=True` (this repo's prior variant,
+    kept as a named alternative, not deleted) is defensible for the READOUT specifically,
+    since the readout is `softmax(W_U norm(J_l h_l))` and that `norm` carries a learned
+    gain -- but the paper's *vector* definition itself has none. Passing `use_gamma=False`
+    means this function's output is NO LONGER expected to equal the readout path's own
+    scoring exactly; see `assert_vector_matches_readout_path`'s `use_gamma` parameter,
+    which reports that divergence rather than raising on it.
+
+    `layer == lens_model.n_layers - 1` (the model's true final layer) is not in
+    `lens.jacobians` for this lens (fitted 0..n_layers-2 only) because it doesn't need to
+    be: that layer's output already IS the final-layer basis by construction (it feeds
+    `final_norm`/`lm_head` directly, with no further transformer block in between), so
+    `J = I` there exactly, not an approximation. Any other missing layer is refused rather
+    than silently guessed at.
+    """
+    lm_head_weight = lens_model._lm_head.weight  # noqa: SLF001 -- see module docstring
+    w_raw = lm_head_weight[token_id].float()
+
+    if layer in lens.jacobians:
+        J_l = lens.jacobians[layer].to(w_raw.device)
+    elif layer == lens_model.n_layers - 1:
+        J_l = torch.eye(lens_model.d_model, dtype=torch.float32, device=w_raw.device)
+    else:
+        raise ValueError(
+            f"layer {layer} is not in lens.source_layers ({lens.source_layers}) and is "
+            "not the model's final layer -- refusing to guess a Jacobian for it."
+        )
+
+    if use_gamma:
+        final_norm = lens_model._final_norm  # noqa: SLF001
+        gamma = effective_rms_gain(final_norm, w_raw)
+        w_scaled = w_raw * gamma
+    else:
+        w_scaled = w_raw
+    return J_l.T @ w_scaled
+
+
+@dataclasses.dataclass
+class VectorConsistencyResult:
+    matches_readout_path: bool
+    score_via_vector: float
+    score_via_readout_path: float
+    used_gamma: bool
+
+
+def assert_vector_matches_readout_path(
+    lens_model: HFLensModel, lens: JacobianLens, token_id: int, layer: int, vector: torch.Tensor,
+    *, use_gamma: bool = True, raise_on_mismatch: bool = True,
+) -> VectorConsistencyResult:
+    """Regression guard, cheap enough to run on every swap trial: independently
+    recomputes "the readout path's score contribution for `token_id` at `layer`" via the
+    ACTUAL readout code path (`lens.transport` + the final norm's gamma -- the readout
+    ALWAYS includes gamma; that is fixed model architecture, not a variant choice) against
+    a random probe residual, and compares it to dotting `vector` against that same probe
+    residual.
+
+    When `use_gamma=True` (this repo's original variant, matching the readout exactly),
+    equality is EXACT up to float noise, and a mismatch means `vector` is stale/wrong --
+    this is the check that would have caught causal.py's original 2026-09-09 bug on day
+    one, and it still hard-raises by default (`raise_on_mismatch=True`) for this variant.
+
+    When `use_gamma=False` (the paper's literal "rows of W_U J_l" vector definition, no
+    gamma), a mismatch against the (gamma-including) readout path is EXPECTED, not a bug:
+    the paper's swap vectors and jlens's own readout formula legitimately differ by the
+    gamma factor. Per instruction, this is reported rather than forced to agree --
+    `raise_on_mismatch` should be passed as False by callers using the no-gamma variant,
+    and the returned `VectorConsistencyResult` records the divergence for the report
+    (score_via_vector vs score_via_readout_path) instead of crashing the run.
+    """
+    # Deterministic probe avoids consuming the experiment sampling RNG.
+    probe_h = torch.linspace(-1.0, 2.0, lens_model.d_model, device=vector.device)
+    if layer in lens.jacobians:
+        transported = lens.transport(probe_h, layer)
+    elif layer == lens_model.n_layers - 1:
+        transported = probe_h
+    else:
+        raise ValueError(f"layer {layer} has no Jacobian and is not the final layer")
+    final_norm = lens_model._final_norm  # noqa: SLF001
+    # Independently execute the normalization rather than repeating the gain formula.
+    rms = torch.sqrt(transported.float().square().mean() + _rms_epsilon(final_norm))
+    scaled = final_norm(transported.float()).float() * rms
+    w_raw = lens_model._lm_head.weight[token_id].float()  # noqa: SLF001
+    score_via_readout_path = (w_raw @ scaled).item()
+    score_via_vector = (vector.float() @ probe_h).item()
+    matches = math.isclose(score_via_readout_path, score_via_vector, rel_tol=1e-3, abs_tol=1e-3)
+    if not matches and raise_on_mismatch:
+        raise RuntimeError(
+            f"swap vector for token {token_id} at layer {layer} does not match the "
+            f"readout path's own scoring ({score_via_vector:.6f} vs {score_via_readout_path:.6f}) "
+            "-- this is exactly the 2026-09-09 bug (raw unembedding rows used instead of "
+            "layer-appropriate J-lens vectors). Refusing to proceed."
+        )
+    return VectorConsistencyResult(
+        matches_readout_path=matches, score_via_vector=score_via_vector,
+        score_via_readout_path=score_via_readout_path, used_gamma=use_gamma,
+    )
+
+
 @dataclasses.dataclass
 class ResolvedTokens:
     """The two token ids Stage D scores for one item, resolved against whichever
@@ -159,4 +302,39 @@ def resolve_tokens(lens_model: HFLensModel, prompt: str, target_word: str) -> Re
         target_is_single_token=len(target_suffix) == 1,
         surface_is_single_token=len(surface_suffix) == 1,
         target_suffix_ids=target_suffix,
+    )
+
+
+@dataclasses.dataclass
+class ResolvedContinuationToken:
+    token_id: int
+    is_single_token: bool
+    suffix_ids: list[int]
+
+
+def resolve_continuation_token(
+    lens_model: HFLensModel, prompt: str, word: str
+) -> ResolvedContinuationToken:
+    """Encode an explicit continuation surface without retokenizing the prompt.
+
+    Words after prose or trailing whitespace use the leading-space vocabulary form;
+    opening quotes take the bare form. Numbers after whitespace take the bare form.
+    This convention is fixed before scoring; it never consults lens/model ranks.
+    The prompt remains verbatim, including any existing trailing whitespace.
+    """
+    if not prompt or not word or word != word.strip():
+        raise ValueError("Expected a nonempty prompt and a stripped, nonempty concept")
+    quote = prompt[-1] in '\"“‘'
+    needs_space = not quote and (prompt[-1].isalnum() or
+                                (prompt[-1].isspace() and not word[0].isdigit()))
+    surface = (" " if needs_space else "") + word
+    tokenizer = lens_model.tokenizer
+    suffix = tokenizer.encode(surface, add_special_tokens=False)
+    if not suffix:
+        raise ValueError(f"Empty tokenization for {surface!r}")
+    decoded = tokenizer.decode(suffix, skip_special_tokens=False, clean_up_tokenization_spaces=False)
+    if decoded != surface:
+        raise ValueError(f"Continuation does not round-trip: {surface!r} -> {decoded!r}")
+    return ResolvedContinuationToken(
+        token_id=suffix[0], is_single_token=len(suffix) == 1, suffix_ids=suffix
     )

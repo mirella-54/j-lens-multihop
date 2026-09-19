@@ -1,0 +1,1804 @@
+{
+  "description": "DRAFT, for manual review. A swap does not run a second prompt -- it takes THIS item's own prompt and swaps in a different word/token at the intermediate or answer coordinate. swap_intermediate / swap_answer are exactly those replacement words (with accepted synonym forms), nothing else. `invented`=true means the swap word pair came from general knowledge (not from another item in Anthropic's file) because nothing in-bank shared this item's relation -- review those most closely. `note` flags anything else worth a second look (a data-quality concern, a reversed query direction, etc.).",
+  "items": {
+    "carnival-ocean": {
+      "prompt": "Fact: The ocean on the coast of the country where Carnival is most famously celebrated is the ",
+      "intermediate": [
+        "Brazil"
+      ],
+      "answer": [
+        "Atlantic"
+      ],
+      "relation": "country:coastal_ocean",
+      "swap_intermediate": [
+        "China"
+      ],
+      "swap_answer": [
+        "Pacific"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "amazon-language": {
+      "prompt": "Fact: The language spoken in the country where the Amazon River ends is ",
+      "intermediate": [
+        "Brazil"
+      ],
+      "answer": [
+        "Portuguese"
+      ],
+      "relation": "country:language",
+      "swap_intermediate": [
+        "France"
+      ],
+      "swap_answer": [
+        "French"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "mars-color": {
+      "prompt": "Fact: The color of the planet fourth from the Sun is ",
+      "intermediate": [
+        "Mars"
+      ],
+      "answer": [
+        "red"
+      ],
+      "relation": "planet:color",
+      "swap_intermediate": [
+        "Neptune"
+      ],
+      "swap_answer": [
+        "blue"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "spider-legs": {
+      "prompt": "Fact: The number of legs on the animal that spins webs is ",
+      "intermediate": [
+        "spider"
+      ],
+      "answer": [
+        "8",
+        "eight"
+      ],
+      "relation": "animal:leg_count",
+      "swap_intermediate": [
+        "ant"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "basketball-players": {
+      "prompt": "Fact: The number of players per side in the sport invented in Springfield, Massachusetts is ",
+      "intermediate": [
+        "basketball"
+      ],
+      "answer": [
+        "5",
+        "five"
+      ],
+      "relation": "sport:players_per_side",
+      "swap_intermediate": [
+        "volleyball"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "paper-continent": {
+      "prompt": "Fact: The continent where the country that invented paper is located is ",
+      "intermediate": [
+        "China"
+      ],
+      "answer": [
+        "Asia"
+      ],
+      "relation": "country:continent",
+      "swap_intermediate": [
+        "Vatican"
+      ],
+      "swap_answer": [
+        "Europe"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "christmas-season": {
+      "prompt": "Fact: The season when the holiday with a decorated tree occurs is ",
+      "intermediate": [
+        "Christmas"
+      ],
+      "answer": [
+        "winter"
+      ],
+      "relation": "holiday:season",
+      "swap_intermediate": [
+        "Halloween"
+      ],
+      "swap_answer": [
+        "fall",
+        "autumn"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "osu-rival-mascot": {
+      "prompt": "Fact: The mascot of the college football rival of Ohio State is a ",
+      "intermediate": [
+        "Michigan"
+      ],
+      "answer": [
+        "wolverine"
+      ],
+      "relation": "rivalteam:mascot",
+      "swap_intermediate": [
+        "Alabama"
+      ],
+      "swap_answer": [
+        "elephant"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "topeka-west": {
+      "prompt": "Fact: The state west of the state with Topeka as its capital is ",
+      "intermediate": [
+        "Kansas"
+      ],
+      "answer": [
+        "Colorado"
+      ],
+      "relation": "geographic:west_neighbor",
+      "swap_intermediate": [
+        "Spain"
+      ],
+      "swap_answer": [
+        "Portugal"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "atomic-79-symbol": {
+      "prompt": "Fact: The chemical symbol for the element with atomic number 79 is ",
+      "intermediate": [
+        "gold"
+      ],
+      "answer": [
+        "Au"
+      ],
+      "relation": "element:chemical_symbol",
+      "swap_intermediate": [
+        "iron"
+      ],
+      "swap_answer": [
+        "Fe"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "atomic-26-symbol": {
+      "prompt": "Fact: The chemical symbol for the element with atomic number 26 is ",
+      "intermediate": [
+        "iron"
+      ],
+      "answer": [
+        "Fe"
+      ],
+      "relation": "element:chemical_symbol",
+      "swap_intermediate": [
+        "gold"
+      ],
+      "swap_answer": [
+        "Au"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "atomic-29-symbol": {
+      "prompt": "Fact: The chemical symbol for the element with atomic number 29 is ",
+      "intermediate": [
+        "copper"
+      ],
+      "answer": [
+        "Cu"
+      ],
+      "relation": "element:chemical_symbol",
+      "swap_intermediate": [
+        "iron"
+      ],
+      "swap_answer": [
+        "Fe"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "atomic-80-state": {
+      "prompt": "Fact: The state of matter at room temperature of the element with atomic number 80 is ",
+      "intermediate": [
+        "mercury"
+      ],
+      "answer": [
+        "liquid"
+      ],
+      "relation": "element:state_of_matter",
+      "swap_intermediate": [
+        "oxygen"
+      ],
+      "swap_answer": [
+        "gas"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "atomic-29-flame": {
+      "prompt": "Fact: The flame color produced by burning the element with atomic number 29 is ",
+      "intermediate": [
+        "copper"
+      ],
+      "answer": [
+        "green"
+      ],
+      "relation": "element:flame_color",
+      "swap_intermediate": [
+        "sodium"
+      ],
+      "swap_answer": [
+        "yellow"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "planet-3-moons": {
+      "prompt": "Fact: The number of natural moons orbiting the planet third from the Sun is ",
+      "intermediate": [
+        "Earth"
+      ],
+      "answer": [
+        "1",
+        "one"
+      ],
+      "relation": "planet:moon_count",
+      "swap_intermediate": [
+        "Mars"
+      ],
+      "swap_answer": [
+        "2",
+        "two"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "month-3-godof": {
+      "prompt": "Fact: The third month of the year is named after the Roman god of ",
+      "intermediate": [
+        "March"
+      ],
+      "answer": [
+        "war"
+      ],
+      "relation": "month:god_domain",
+      "swap_intermediate": [
+        "January"
+      ],
+      "swap_answer": [
+        "beginnings"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "spaceneedle-border": {
+      "prompt": "Fact: The US state where the Space Needle is located shares its northern border with ",
+      "intermediate": [
+        "Seattle"
+      ],
+      "answer": [
+        "Canada"
+      ],
+      "relation": "us_state:bordering_country",
+      "swap_intermediate": [
+        "Texas"
+      ],
+      "swap_answer": [
+        "Mexico"
+      ],
+      "invented": true,
+      "note": "spaceneedle-border's OWN intermediate is 'Seattle' (a city) in the source bank, but Seattle doesn't border Canada -- Washington State does. Broadened the relation to 'bordering country' (not just 'northern') so this pairs with spaceneedle-border regardless, but the underlying item still looks like it has a data error worth fixing at the source before use."
+    },
+    "rhyme-rain-neighbor": {
+      "prompt": "Fact: The European country whose name rhymes with 'rain' shares its western border with ",
+      "intermediate": [
+        "Spain"
+      ],
+      "answer": [
+        "Portugal"
+      ],
+      "relation": "geographic:west_neighbor",
+      "swap_intermediate": [
+        "Kansas"
+      ],
+      "swap_answer": [
+        "Colorado"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "rhyme-door-doubled": {
+      "prompt": "Fact: Take the number whose name rhymes with the word door. Doubling it gives the number ",
+      "intermediate": [
+        "four",
+        "4"
+      ],
+      "answer": [
+        "8",
+        "eight"
+      ],
+      "relation": "arithmetic:double",
+      "swap_intermediate": [
+        "two",
+        "2"
+      ],
+      "swap_answer": [
+        "4",
+        "four"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "rhyme-chair-flag": {
+      "prompt": "Fact: The large mammal whose name rhymes with 'chair' appears on the state flag of ",
+      "intermediate": [
+        "bear"
+      ],
+      "answer": [
+        "California"
+      ],
+      "relation": "animal:on_state_flag",
+      "swap_intermediate": [
+        "buffalo"
+      ],
+      "swap_answer": [
+        "Wyoming"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "rhyme-spoon-orbit": {
+      "prompt": "Fact: The celestial body whose name rhymes with 'spoon' orbits the planet called ",
+      "intermediate": [
+        "moon"
+      ],
+      "answer": [
+        "Earth"
+      ],
+      "relation": "celestialbody:orbits_planet",
+      "swap_intermediate": [
+        "Titan"
+      ],
+      "swap_answer": [
+        "Saturn"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "etym-wargod-month": {
+      "prompt": "Fact: The month named after the Roman god of war is month number ",
+      "intermediate": [
+        "March"
+      ],
+      "answer": [
+        "3",
+        "three"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "February"
+      ],
+      "swap_answer": [
+        "2",
+        "two"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "etym-frigg-position": {
+      "prompt": "Fact: Counting Monday as day 1, the day of the week named after the Norse goddess Frigg is day number ",
+      "intermediate": [
+        "Friday"
+      ],
+      "answer": [
+        "5",
+        "five"
+      ],
+      "relation": "sequence_position:named_after_deity",
+      "swap_intermediate": [
+        "Saturn"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "etym-saturn-position": {
+      "prompt": "Fact: The planet named after the Roman god of agriculture and time is planet number ",
+      "intermediate": [
+        "Saturn"
+      ],
+      "answer": [
+        "6",
+        "six"
+      ],
+      "relation": "sequence_position:named_after_deity",
+      "swap_intermediate": [
+        "Friday"
+      ],
+      "swap_answer": [
+        "5",
+        "five"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "chem-photosynthesis-Z": {
+      "prompt": "Fact: The atomic number of the gas that plants release during photosynthesis is ",
+      "intermediate": [
+        "oxygen"
+      ],
+      "answer": [
+        "8",
+        "eight"
+      ],
+      "relation": "element:atomic_number",
+      "swap_intermediate": [
+        "carbon"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "chem-atmosphere-Z": {
+      "prompt": "Fact: The atomic number of the gas that makes up about 78 percent of the atmosphere is ",
+      "intermediate": [
+        "nitrogen"
+      ],
+      "answer": [
+        "7",
+        "seven"
+      ],
+      "relation": "element:atomic_number",
+      "swap_intermediate": [
+        "carbon"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "chem-organic-Z": {
+      "prompt": "Fact: The atomic number of the element present in all organic compounds by definition is ",
+      "intermediate": [
+        "carbon"
+      ],
+      "answer": [
+        "6",
+        "six"
+      ],
+      "relation": "element:atomic_number",
+      "swap_intermediate": [
+        "calcium"
+      ],
+      "swap_answer": [
+        "20",
+        "twenty"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "chem-bones-Z": {
+      "prompt": "Fact: The atomic number of the metal most abundant in human bones is ",
+      "intermediate": [
+        "calcium"
+      ],
+      "answer": [
+        "20",
+        "twenty"
+      ],
+      "relation": "element:atomic_number",
+      "swap_intermediate": [
+        "carbon"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "func-pumps-chambers": {
+      "prompt": "Fact: In humans, the organ that pumps blood through the body has this many chambers: ",
+      "intermediate": [
+        "heart"
+      ],
+      "answer": [
+        "4",
+        "four"
+      ],
+      "relation": "organ:numeric_property",
+      "swap_intermediate": [
+        "kidney"
+      ],
+      "swap_answer": [
+        "2",
+        "two"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "func-filters-count": {
+      "prompt": "Fact: In humans, the number of organs that filter blood to make urine is ",
+      "intermediate": [
+        "kidney"
+      ],
+      "answer": [
+        "2",
+        "two"
+      ],
+      "relation": "organ:numeric_property",
+      "swap_intermediate": [
+        "heart"
+      ],
+      "swap_answer": [
+        "4",
+        "four"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "birthstone-emerald-month": {
+      "prompt": "Fact: Emerald is the birthstone for month number ",
+      "intermediate": [
+        "May"
+      ],
+      "answer": [
+        "5",
+        "five"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "October"
+      ],
+      "swap_answer": [
+        "10",
+        "ten"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "violin-strings": {
+      "prompt": "Fact: The number of strings on the instrument that fiddlers play is ",
+      "intermediate": [
+        "violin"
+      ],
+      "answer": [
+        "4",
+        "four"
+      ],
+      "relation": "instrument:string_count",
+      "swap_intermediate": [
+        "guitar"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "nhop-primary-planet": {
+      "prompt": "Count the legs on a spider. The planet at that position from the Sun is Neptune. Count the primary colors of light. The planet at that position from the Sun is ",
+      "intermediate": [
+        "3",
+        "three",
+        "third"
+      ],
+      "answer": [
+        "Earth"
+      ],
+      "relation": "ordinal_position:planet",
+      "swap_intermediate": [
+        "5",
+        "five",
+        "fifth"
+      ],
+      "swap_answer": [
+        "Jupiter"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-rings-planet": {
+      "prompt": "Count the legs on a spider. The planet at that position from the Sun is Neptune. Count the Olympic rings. The planet at that position from the Sun is ",
+      "intermediate": [
+        "5",
+        "five",
+        "fifth"
+      ],
+      "answer": [
+        "Jupiter"
+      ],
+      "relation": "ordinal_position:planet",
+      "swap_intermediate": [
+        "3",
+        "three",
+        "third"
+      ],
+      "swap_answer": [
+        "Earth"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-guitar-planet": {
+      "prompt": "Count the legs on a spider. The planet at that position from the Sun is Neptune. Count the strings on a standard guitar. The planet at that position from the Sun is ",
+      "intermediate": [
+        "6",
+        "six",
+        "sixth"
+      ],
+      "answer": [
+        "Saturn"
+      ],
+      "relation": "ordinal_position:planet",
+      "swap_intermediate": [
+        "3",
+        "three",
+        "third"
+      ],
+      "swap_answer": [
+        "Earth"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-compass-planet": {
+      "prompt": "Count the legs on a spider. The planet at that position from the Sun is Neptune. Count the cardinal directions on a compass. The planet at that position from the Sun is ",
+      "intermediate": [
+        "4",
+        "four",
+        "fourth"
+      ],
+      "answer": [
+        "Mars"
+      ],
+      "relation": "ordinal_position:planet",
+      "swap_intermediate": [
+        "6",
+        "six",
+        "sixth"
+      ],
+      "swap_answer": [
+        "Saturn"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-volleyball-planet": {
+      "prompt": "Count the legs on a spider. The planet at that position from the Sun is Neptune. Count the players on a volleyball court per team. The planet at that position from the Sun is ",
+      "intermediate": [
+        "6",
+        "six",
+        "sixth"
+      ],
+      "answer": [
+        "Saturn"
+      ],
+      "relation": "ordinal_position:planet",
+      "swap_intermediate": [
+        "4",
+        "four",
+        "fourth"
+      ],
+      "swap_answer": [
+        "Mars"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-alphabet-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the letters in the English alphabet. The element at that position on the periodic table is ",
+      "intermediate": [
+        "26",
+        "twenty-six"
+      ],
+      "answer": [
+        "iron"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "52",
+        "fifty-two"
+      ],
+      "swap_answer": [
+        "tellurium"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-fortnight-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the days in a fortnight. The element at that position on the periodic table is ",
+      "intermediate": [
+        "14",
+        "fourteen"
+      ],
+      "answer": [
+        "silicon"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "52",
+        "fifty-two"
+      ],
+      "swap_answer": [
+        "tellurium"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-cube-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the faces on a cube. The element at that position on the periodic table is ",
+      "intermediate": [
+        "6",
+        "six"
+      ],
+      "answer": [
+        "carbon"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "26",
+        "twenty-six"
+      ],
+      "swap_answer": [
+        "iron"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-rainbow-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the colors in a rainbow. The element at that position on the periodic table is ",
+      "intermediate": [
+        "7",
+        "seven"
+      ],
+      "answer": [
+        "nitrogen"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "52",
+        "fifty-two"
+      ],
+      "swap_answer": [
+        "tellurium"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-spider-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the legs on a spider. The element at that position on the periodic table is ",
+      "intermediate": [
+        "8",
+        "eight"
+      ],
+      "answer": [
+        "oxygen"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "16",
+        "sixteen"
+      ],
+      "swap_answer": [
+        "sulfur"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-insect-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the legs on an insect. The element at that position on the periodic table is ",
+      "intermediate": [
+        "6",
+        "six"
+      ],
+      "answer": [
+        "carbon"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "11",
+        "eleven"
+      ],
+      "swap_answer": [
+        "sodium"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-week-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the days in a week. The element at that position on the periodic table is ",
+      "intermediate": [
+        "7",
+        "seven"
+      ],
+      "answer": [
+        "nitrogen"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "8",
+        "eight"
+      ],
+      "swap_answer": [
+        "oxygen"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "super-largest-country-capital": {
+      "prompt": "Fact: The capital city of the largest country by area is ",
+      "intermediate": [
+        "Russia"
+      ],
+      "answer": [
+        "Moscow"
+      ],
+      "relation": "country:capital",
+      "swap_intermediate": [
+        "Indonesia"
+      ],
+      "swap_answer": [
+        "Jakarta"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "super-smallest-continent": {
+      "prompt": "Fact: The smallest country in the world is located on the continent of ",
+      "intermediate": [
+        "Vatican"
+      ],
+      "answer": [
+        "Europe"
+      ],
+      "relation": "country:continent",
+      "swap_intermediate": [
+        "China"
+      ],
+      "swap_answer": [
+        "Asia"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "super-populous-capital": {
+      "prompt": "Fact: The capital city of the most populous country in the world is ",
+      "intermediate": [
+        "China"
+      ],
+      "answer": [
+        "Beijing"
+      ],
+      "relation": "country:capital",
+      "swap_intermediate": [
+        "Russia"
+      ],
+      "swap_answer": [
+        "Moscow"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "super-largest-island-nation": {
+      "prompt": "Fact: The country that is the largest island nation by area has its capital at ",
+      "intermediate": [
+        "Indonesia"
+      ],
+      "answer": [
+        "Jakarta"
+      ],
+      "relation": "country:capital",
+      "swap_intermediate": [
+        "Russia"
+      ],
+      "swap_answer": [
+        "Moscow"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "colosseum-currency": {
+      "prompt": "Fact: The currency used in the country where the Colosseum stands is the ",
+      "intermediate": [
+        "Italy"
+      ],
+      "answer": [
+        "Euro"
+      ],
+      "relation": "country:currency",
+      "swap_intermediate": [
+        "Japan"
+      ],
+      "swap_answer": [
+        "yen"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "greatwall-ocean": {
+      "prompt": "Fact: The ocean east of the country that built the Great Wall is the ",
+      "intermediate": [
+        "China"
+      ],
+      "answer": [
+        "Pacific"
+      ],
+      "relation": "country:coastal_ocean",
+      "swap_intermediate": [
+        "Brazil"
+      ],
+      "swap_answer": [
+        "Atlantic"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "holiday-independence-monthnum": {
+      "prompt": "Fact: The US Independence Day holiday is celebrated in month number ",
+      "intermediate": [
+        "July"
+      ],
+      "answer": [
+        "7",
+        "seven"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "February"
+      ],
+      "swap_answer": [
+        "2",
+        "two"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "holiday-christmas-monthnum": {
+      "prompt": "Fact: Christmas Day is celebrated in month number ",
+      "intermediate": [
+        "December"
+      ],
+      "answer": [
+        "12",
+        "twelve"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "October"
+      ],
+      "swap_answer": [
+        "10",
+        "ten"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "holiday-halloween-monthnum": {
+      "prompt": "Fact: Halloween is celebrated in month number ",
+      "intermediate": [
+        "October"
+      ],
+      "answer": [
+        "10",
+        "ten"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "March"
+      ],
+      "swap_answer": [
+        "3",
+        "three"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "holiday-valentines-monthnum": {
+      "prompt": "Fact: Valentine's Day is celebrated in month number ",
+      "intermediate": [
+        "February"
+      ],
+      "answer": [
+        "2",
+        "two"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "March"
+      ],
+      "swap_answer": [
+        "3",
+        "three"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "month-1-godof": {
+      "prompt": "Fact: The first month of the year is named after the Roman god of ",
+      "intermediate": [
+        "January"
+      ],
+      "answer": [
+        "beginnings"
+      ],
+      "relation": "month:god_domain",
+      "swap_intermediate": [
+        "March"
+      ],
+      "swap_answer": [
+        "war"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "etym-janus-monthnum": {
+      "prompt": "Fact: The month named after the two-faced Roman god of doorways is month number ",
+      "intermediate": [
+        "January"
+      ],
+      "answer": [
+        "1",
+        "one"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "October"
+      ],
+      "swap_answer": [
+        "10",
+        "ten"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "month-7-namedafter": {
+      "prompt": "Fact: The seventh month of the year is named after the Roman leader Julius ",
+      "intermediate": [
+        "July"
+      ],
+      "answer": [
+        "Caesar"
+      ],
+      "relation": "month:namesake_person",
+      "swap_intermediate": [
+        "August"
+      ],
+      "swap_answer": [
+        "Augustus"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "etym-caesar-monthnum": {
+      "prompt": "Fact: The month named after Julius Caesar is month number ",
+      "intermediate": [
+        "July"
+      ],
+      "answer": [
+        "7",
+        "seven"
+      ],
+      "relation": "month:month_number",
+      "swap_intermediate": [
+        "March"
+      ],
+      "swap_answer": [
+        "3",
+        "three"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-soccer-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the players on a soccer team on the field. The element at that position on the periodic table is ",
+      "intermediate": [
+        "11",
+        "eleven"
+      ],
+      "answer": [
+        "sodium"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "8",
+        "eight"
+      ],
+      "swap_answer": [
+        "oxygen"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-chess-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the pieces each player starts with in chess. The element at that position on the periodic table is ",
+      "intermediate": [
+        "16",
+        "sixteen"
+      ],
+      "answer": [
+        "sulfur"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "13",
+        "thirteen"
+      ],
+      "swap_answer": [
+        "aluminum"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-suit-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the cards in one suit of a standard deck. The element at that position on the periodic table is ",
+      "intermediate": [
+        "13",
+        "thirteen"
+      ],
+      "answer": [
+        "aluminum"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "8",
+        "eight"
+      ],
+      "swap_answer": [
+        "oxygen"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-clock-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the hours marked on a standard clock face. The element at that position on the periodic table is ",
+      "intermediate": [
+        "12",
+        "twelve"
+      ],
+      "answer": [
+        "magnesium"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "14",
+        "fourteen"
+      ],
+      "swap_answer": [
+        "silicon"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "nhop-deck-element": {
+      "prompt": "Count the items in a dozen. The element at that position on the periodic table is magnesium. Count the cards in a standard deck without jokers. The element at that position on the periodic table is ",
+      "intermediate": [
+        "52",
+        "fifty-two"
+      ],
+      "answer": [
+        "tellurium"
+      ],
+      "relation": "atomic_number:element",
+      "swap_intermediate": [
+        "16",
+        "sixteen"
+      ],
+      "swap_answer": [
+        "sulfur"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "inv-sunrise-opposite": {
+      "prompt": "Fact: The cardinal direction opposite to the one where the sun rises is ",
+      "intermediate": [
+        "east"
+      ],
+      "answer": [
+        "west"
+      ],
+      "relation": "cardinal_direction:opposite",
+      "swap_intermediate": [
+        "south"
+      ],
+      "swap_answer": [
+        "north"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "inv-balloon-opposite": {
+      "prompt": "Fact: The direction opposite to the one a helium balloon floats toward is \"",
+      "intermediate": [
+        "up"
+      ],
+      "answer": [
+        "down"
+      ],
+      "relation": "vertical_direction:opposite",
+      "swap_intermediate": [
+        "down"
+      ],
+      "swap_answer": [
+        "up"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "inv-roots-opposite": {
+      "prompt": "Fact: The direction opposite to the one tree roots grow is \"",
+      "intermediate": [
+        "down"
+      ],
+      "answer": [
+        "up"
+      ],
+      "relation": "vertical_direction:opposite",
+      "swap_intermediate": [
+        "up"
+      ],
+      "swap_answer": [
+        "down"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "inv-antarctica-opposite": {
+      "prompt": "Fact: The cardinal direction opposite to where Antarctica lies from the equator is ",
+      "intermediate": [
+        "south"
+      ],
+      "answer": [
+        "north"
+      ],
+      "relation": "cardinal_direction:opposite",
+      "swap_intermediate": [
+        "east"
+      ],
+      "swap_answer": [
+        "west"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "rhyme-tree-squared": {
+      "prompt": "Fact: The square of the number whose name rhymes with tree is ",
+      "intermediate": [
+        "three",
+        "3"
+      ],
+      "answer": [
+        "9",
+        "nine"
+      ],
+      "relation": "numberword:squared",
+      "swap_intermediate": [
+        "four",
+        "4"
+      ],
+      "swap_answer": [
+        "16",
+        "sixteen"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "rhyme-hive-plusone": {
+      "prompt": "Fact: One more than the number whose name rhymes with hive is ",
+      "intermediate": [
+        "five",
+        "5"
+      ],
+      "answer": [
+        "6",
+        "six"
+      ],
+      "relation": "numberword:plusone",
+      "swap_intermediate": [
+        "six",
+        "6"
+      ],
+      "swap_answer": [
+        "7",
+        "seven"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "rhyme-fix-halved": {
+      "prompt": "Fact: Half of the number whose name rhymes with fix is ",
+      "intermediate": [
+        "six",
+        "6"
+      ],
+      "answer": [
+        "3",
+        "three"
+      ],
+      "relation": "arithmetic:half",
+      "swap_intermediate": [
+        "12",
+        "twelve"
+      ],
+      "swap_answer": [
+        "6",
+        "six"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "rhyme-shoe-doubled": {
+      "prompt": "Fact: Double the number whose name rhymes with shoe is ",
+      "intermediate": [
+        "two",
+        "2"
+      ],
+      "answer": [
+        "4",
+        "four"
+      ],
+      "relation": "arithmetic:double",
+      "swap_intermediate": [
+        "four",
+        "4"
+      ],
+      "swap_answer": [
+        "8",
+        "eight"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "tajmahal-continent": {
+      "prompt": "Fact: The continent where the country that built the Taj Mahal is located is ",
+      "intermediate": [
+        "India"
+      ],
+      "answer": [
+        "Asia"
+      ],
+      "relation": "country:continent",
+      "swap_intermediate": [
+        "Vatican"
+      ],
+      "swap_answer": [
+        "Europe"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "louvre-language": {
+      "prompt": "Fact: The primary language spoken in the country where the Louvre museum is located is ",
+      "intermediate": [
+        "France"
+      ],
+      "answer": [
+        "French"
+      ],
+      "relation": "country:language",
+      "swap_intermediate": [
+        "Brazil"
+      ],
+      "swap_answer": [
+        "Portuguese"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "firstletter-halloween-month": {
+      "prompt": "Fact: The first letter of the month containing Halloween is \"",
+      "intermediate": [
+        "October"
+      ],
+      "answer": [
+        "O"
+      ],
+      "relation": "month:first_letter",
+      "swap_intermediate": [
+        "February"
+      ],
+      "swap_answer": [
+        "F"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "firstletter-valentines-month": {
+      "prompt": "Fact: The first letter of the month containing Valentine's Day is \"",
+      "intermediate": [
+        "February"
+      ],
+      "answer": [
+        "F"
+      ],
+      "relation": "month:first_letter",
+      "swap_intermediate": [
+        "October"
+      ],
+      "swap_answer": [
+        "O"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "firstletter-populous-country": {
+      "prompt": "Fact: The first letter of the name of the world's most populous country is ",
+      "intermediate": [
+        "China"
+      ],
+      "answer": [
+        "C"
+      ],
+      "relation": "country:first_letter",
+      "swap_intermediate": [
+        "France"
+      ],
+      "swap_answer": [
+        "F"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "firstletter-paris-country": {
+      "prompt": "Fact: The first letter of the name of the country whose capital is Paris is ",
+      "intermediate": [
+        "France"
+      ],
+      "answer": [
+        "F"
+      ],
+      "relation": "country:first_letter",
+      "swap_intermediate": [
+        "China"
+      ],
+      "swap_answer": [
+        "C"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "firstletter-greatwall-country": {
+      "prompt": "Fact: The first letter of the name of the country that built the Great Wall is ",
+      "intermediate": [
+        "China"
+      ],
+      "answer": [
+        "C"
+      ],
+      "relation": "country:first_letter",
+      "swap_intermediate": [
+        "France"
+      ],
+      "swap_answer": [
+        "F"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "succ-halloween-nextmonth": {
+      "prompt": "Fact: The month immediately after the one containing Halloween is ",
+      "intermediate": [
+        "October"
+      ],
+      "answer": [
+        "November"
+      ],
+      "relation": "month:next_month",
+      "swap_intermediate": [
+        "December"
+      ],
+      "swap_answer": [
+        "January"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "pred-valentines-prevmonth": {
+      "prompt": "Fact: The month immediately before the one containing Valentine's Day is \"",
+      "intermediate": [
+        "February"
+      ],
+      "answer": [
+        "January"
+      ],
+      "relation": "month:prev_month",
+      "swap_intermediate": [
+        "December"
+      ],
+      "swap_answer": [
+        "November"
+      ],
+      "invented": true,
+      "note": null
+    },
+    "dual-stars-visible-opposite": {
+      "prompt": "Fact: The opposite of the time of day when stars are visible is \"",
+      "intermediate": [
+        "night"
+      ],
+      "answer": [
+        "day"
+      ],
+      "relation": "timeofday:opposite",
+      "swap_intermediate": [
+        "day"
+      ],
+      "swap_answer": [
+        "night"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "dual-photosynthesis-opposite": {
+      "prompt": "Fact: The opposite of the time of day when plants photosynthesize is \"",
+      "intermediate": [
+        "day"
+      ],
+      "answer": [
+        "night"
+      ],
+      "relation": "timeofday:opposite",
+      "swap_intermediate": [
+        "night"
+      ],
+      "swap_answer": [
+        "day"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "roman-rings-olympic": {
+      "prompt": "Fact: Written as a Roman numeral, the number of Olympic rings is ",
+      "intermediate": [
+        "5",
+        "five"
+      ],
+      "answer": [
+        "V"
+      ],
+      "relation": "number:roman_numeral",
+      "swap_intermediate": [
+        "50",
+        "fifty"
+      ],
+      "swap_answer": [
+        "L"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "roman-states-us": {
+      "prompt": "Fact: Written as a Roman numeral, the number of US states is ",
+      "intermediate": [
+        "50",
+        "fifty"
+      ],
+      "answer": [
+        "L"
+      ],
+      "relation": "number:roman_numeral",
+      "swap_intermediate": [
+        "5",
+        "five"
+      ],
+      "swap_answer": [
+        "V"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "half-clock-hours": {
+      "prompt": "Fact: Half the number of hours shown on a standard clock face is ",
+      "intermediate": [
+        "12",
+        "twelve"
+      ],
+      "answer": [
+        "6",
+        "six"
+      ],
+      "relation": "arithmetic:half",
+      "swap_intermediate": [
+        "six",
+        "6"
+      ],
+      "swap_answer": [
+        "3",
+        "three"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "double-dice-faces": {
+      "prompt": "Fact: Double the number of faces on a standard die is ",
+      "intermediate": [
+        "6",
+        "six"
+      ],
+      "answer": [
+        "12",
+        "twelve"
+      ],
+      "relation": "arithmetic:double",
+      "swap_intermediate": [
+        "two",
+        "2"
+      ],
+      "swap_answer": [
+        "4",
+        "four"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "letterpos-water-symbol": {
+      "prompt": "Fact: The position in the alphabet of the chemical symbol for hydrogen is ",
+      "intermediate": [
+        "H"
+      ],
+      "answer": [
+        "8",
+        "eight"
+      ],
+      "relation": "letter:alphabet_position",
+      "swap_intermediate": [
+        "N"
+      ],
+      "swap_answer": [
+        "14",
+        "fourteen"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "letterpos-oxygen-symbol": {
+      "prompt": "Fact: The position in the alphabet of the chemical symbol for oxygen is ",
+      "intermediate": [
+        "O"
+      ],
+      "answer": [
+        "15",
+        "fifteen"
+      ],
+      "relation": "letter:alphabet_position",
+      "swap_intermediate": [
+        "H"
+      ],
+      "swap_answer": [
+        "8",
+        "eight"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "letterpos-carbon-symbol": {
+      "prompt": "Fact: The position in the alphabet of the chemical symbol for carbon is ",
+      "intermediate": [
+        "C"
+      ],
+      "answer": [
+        "3",
+        "three"
+      ],
+      "relation": "letter:alphabet_position",
+      "swap_intermediate": [
+        "H"
+      ],
+      "swap_answer": [
+        "8",
+        "eight"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "letterpos-nitrogen-symbol": {
+      "prompt": "Fact: The position in the alphabet of the chemical symbol for nitrogen is ",
+      "intermediate": [
+        "N"
+      ],
+      "answer": [
+        "14",
+        "fourteen"
+      ],
+      "relation": "letter:alphabet_position",
+      "swap_intermediate": [
+        "C"
+      ],
+      "swap_answer": [
+        "3",
+        "three"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "dbl-armistice-antonym": {
+      "prompt": "Fact: The antonym of what an armistice ends is \"",
+      "intermediate": [
+        "war"
+      ],
+      "answer": [
+        "peace"
+      ],
+      "relation": "word:antonym",
+      "swap_intermediate": [
+        "high"
+      ],
+      "swap_answer": [
+        "low"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "dbl-obituary-antonym": {
+      "prompt": "Fact: The antonym of what an obituary announces is \"",
+      "intermediate": [
+        "death"
+      ],
+      "answer": [
+        "birth"
+      ],
+      "relation": "word:antonym",
+      "swap_intermediate": [
+        "high"
+      ],
+      "swap_answer": [
+        "low"
+      ],
+      "invented": false,
+      "note": null
+    },
+    "dbl-altitude-antonym": {
+      "prompt": "Fact: The antonym of how you would describe an airplane's cruising altitude is \"",
+      "intermediate": [
+        "high"
+      ],
+      "answer": [
+        "low"
+      ],
+      "relation": "word:antonym",
+      "swap_intermediate": [
+        "death"
+      ],
+      "swap_answer": [
+        "birth"
+      ],
+      "invented": false,
+      "note": null
+    }
+  }
+}

@@ -64,14 +64,23 @@ class BankConfig:
     read_position_kind: str
     read_position_offsets: list[int]
     scored_field: str
-    permutation_chance_ref: float
+    permutation_chance_ref: float | None  # None when no upstream reference is published/found
+    single_token_required_fields: list[str]  # e.g. ["intermediates"] or ["target", "intermediates"];
+                                              # [] = no mechanical pre-filter for this family
 
 
 @dataclasses.dataclass(frozen=True)
 class StageCConfig:
     enabled: bool
-    chat_enable_thinking: bool
-    verification_template: str
+    mode: str  # "chat_question" (typo: a separate verification prompt) |
+               # "plain_completion" (multihop: greedy/sampled completion of the item's own
+               # prompt, matching its eval_render and majority gate_variant -- see
+               # behavioral.py)
+    scored_field: str  # which item field holds the ground-truth string checked for a hit
+                        # ("intermediates" -> index 0, or a plain string field like "target")
+    chat_enable_thinking: bool  # only used when mode == "chat_question"
+    verification_template: str  # only used when mode == "chat_question"
+    max_new_tokens: int
     n_trials: int
     temperature: float
     pass_threshold: int
@@ -97,6 +106,34 @@ class ScoringConfig:
     pass_at_k: list[int]
     chance_multiple_required: float
     workspace_band_pct: list[float]  # [low, high] on the paper's 0-100 rescaled-depth axis
+
+
+@dataclasses.dataclass(frozen=True)
+class CausalConfig:
+    """Stage E (multihop only -- typo has no causal experiment, so this section is
+    absent/None in the typo configs). All pre-registered before any causal score is seen.
+
+    `onset_relative_fraction` is a POST-HOC addition (2026-09-09, causal validation task,
+    section 4), not part of the original pre-registration -- see
+    runs/causal-multihop-full/controls_report.md. The originally pre-registered
+    `effect_threshold` (an absolute flip rate) makes the depth-gap calc uncomputable by
+    construction on a model that never approaches the paper's 54-70% flip rates -- it
+    returned `onset=None` for both swap types on the real run. `effect_threshold` is kept
+    (not deleted) for that historical/comparison run only; going forward, onset is defined
+    relative to each swap type's OWN peak flip rate, and the full per-window curves --
+    already in `aggregate()`'s `curves` -- are the primary reported output, with onset a
+    derived summary of them rather than the headline."""
+
+    window_width: int  # layers per sweep window (raw indices)
+    window_step: int  # step between window starts; < window_width => overlapping windows
+    effect_threshold: float  # ORIGINAL pre-registered absolute flip-rate threshold --
+                              # kept for the historical pre-fix run only, see above
+    onset_relative_fraction: float  # POST-HOC (see above): onset = first window reaching
+                                     # this fraction of that swap type's OWN peak flip rate
+    alpha: float  # optional scale on the sigma-swap correction, per the paper's "(optionally
+                  # scaled by a factor alpha)" -- 1.0 = the paper's unscaled default
+    n_items_cap: int | None  # safety cap on how many retained-with-swap-target items run
+                              # through the full layer-range sweep (None = all of them)
 
 
 @dataclasses.dataclass(frozen=True)
@@ -145,6 +182,7 @@ class Config:
     stage_c: StageCConfig
     controls: ControlsConfig
     scoring: ScoringConfig
+    causal: CausalConfig | None  # None for families with no causal experiment (typo)
     jlens_pkg: JlensPkgConfig
     output_run_dir_template: str
     source_path: Path
@@ -153,6 +191,14 @@ class Config:
     def load(cls, path: str | Path) -> Config:
         path = Path(path)
         raw = yaml.safe_load(path.read_text())
+        if raw["bank"]["family"] == "multihop":
+            import hashlib
+            import json
+            manifest = (REPO_ROOT / "config" / "multihop_relations.json").read_bytes()
+            sources = b"".join(p.read_bytes() for folder in (REPO_ROOT / "src", REPO_ROOT / "scripts")
+                               for p in sorted(folder.rglob("*.py")))
+            digest = hashlib.sha256(json.dumps(raw, sort_keys=True).encode() + manifest + sources).hexdigest()[:12]
+            raw["run"]["tier"] += f"-v2-{digest}"
         return cls(
             run=RunConfig(
                 tier=_get(raw, "run.tier"),
@@ -193,11 +239,15 @@ class Config:
                 read_position_offsets=_get(raw, "bank.read_position.offsets"),
                 scored_field=_get(raw, "bank.scored_field"),
                 permutation_chance_ref=_get(raw, "bank.permutation_chance_ref"),
+                single_token_required_fields=_get(raw, "bank.single_token_required_fields", []),
             ),
             stage_c=StageCConfig(
                 enabled=_get(raw, "stage_c_behavioral.enabled"),
+                mode=_get(raw, "stage_c_behavioral.mode", "chat_question"),
+                scored_field=_get(raw, "stage_c_behavioral.scored_field", "intermediates"),
                 chat_enable_thinking=_get(raw, "stage_c_behavioral.chat_enable_thinking"),
                 verification_template=_get(raw, "stage_c_behavioral.verification_template"),
+                max_new_tokens=_get(raw, "stage_c_behavioral.max_new_tokens", 60),
                 n_trials=_get(raw, "stage_c_behavioral.n_trials"),
                 temperature=_get(raw, "stage_c_behavioral.temperature"),
                 pass_threshold=_get(raw, "stage_c_behavioral.pass_threshold"),
@@ -216,6 +266,18 @@ class Config:
                 pass_at_k=_get(raw, "scoring.pass_at_k"),
                 chance_multiple_required=_get(raw, "scoring.chance_multiple_required"),
                 workspace_band_pct=_get(raw, "scoring.workspace_band_pct"),
+            ),
+            causal=(
+                CausalConfig(
+                    window_width=_get(raw, "causal.window_width"),
+                    window_step=_get(raw, "causal.window_step"),
+                    effect_threshold=_get(raw, "causal.effect_threshold"),
+                    onset_relative_fraction=_get(raw, "causal.onset_relative_fraction"),
+                    alpha=_get(raw, "causal.alpha"),
+                    n_items_cap=_get(raw, "causal.n_items_cap", None),
+                )
+                if "causal" in raw
+                else None
             ),
             jlens_pkg=JlensPkgConfig(
                 git_repo=_get(raw, "jlens_pkg.git_repo"),

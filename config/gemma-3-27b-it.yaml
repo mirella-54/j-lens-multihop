@@ -1,0 +1,80 @@
+run:
+  tier: multihop-gemma3-27b-it
+  seed: 0
+model:
+  hf_repo: google/gemma-3-27b-it
+  revision: 005ad3404e59d6023443cb575daa05336842228a
+  dtype: bfloat16
+  device: auto
+  trust_remote_code: false
+  auto_class: auto
+  chat_template:
+    enable_thinking: false
+gate:
+  identity_argmax_threshold: 0.85
+  identity_kl_threshold_nats: 0.5
+  identity_max_entropy_nats: 0.75
+  identity_min_samples: 30
+  early_layer_fraction: 0.3333
+lens:
+  repo: camilablank/workspace-lenses
+  revision: d740106d1e0f95456dc8718fba2895e9c8ffd6ef
+  filename: gemma-3-27b-it/j-lens/lens.pt
+  layers: null
+bank:
+  hf_dataset: camilablank/workspace-bench
+  hf_dataset_revision: 4d2268589ec56dbe4024598deb0480828e59f85e
+  git_repo: camilablank/workspace-bench
+  git_commit: 84e3a2d67a2517d28891f9b6153863ec4bd6c825
+  family: multihop
+  path: baseline_evals/single_token/lens-eval-multihop.json
+  n_items: null
+  eval_render: plain
+  read_position:
+    kind: final_prompt_token
+    offsets:
+    - -1
+  scored_field: intermediates
+  permutation_chance_ref: null
+  single_token_required_fields:
+  - target
+  - intermediates
+stage_c_behavioral:
+  enabled: true
+  mode: plain_completion
+  scored_field: target
+  max_new_tokens: 12
+  chat_enable_thinking: false
+  verification_template: ''
+  n_trials: 10
+  temperature: 0.7
+  pass_threshold: 8
+controls:
+  logit_lens: true
+  next_token_dominance: true
+  null_control: permutation
+  permutation:
+    n_donors: 20
+    seed: 0
+scoring:
+  primary_metric: harmonic_mean_rank
+  pass_at_k:
+  - 1
+  - 5
+  - 10
+  chance_multiple_required: 3.0
+  workspace_band_pct:
+  - 33
+  - 92
+causal:
+  window_width: 4
+  window_step: 2
+  effect_threshold: 0.5
+  onset_relative_fraction: 0.5
+  alpha: 1.0
+  n_items_cap: null
+jlens_pkg:
+  git_repo: anthropics/jacobian-lens
+  git_commit: 581d398613e5602a5af361e1c34d3a92ea82ba8e
+output:
+  run_dir: runs/{run_id}

@@ -1,0 +1,88 @@
+[spec-multihop] variant=spec kwargs={'use_gamma': False, 'alpha': 2.0}; 63/100 retained
+[spec-multihop] loading model: Qwen/Qwen3.6-27B (ONCE -- see stage_c1's comment)
+Fetching 15 files:   0%|          | 0/15 [00:00<?, ?it/s]Fetching 15 files: 100%|██████████| 15/15 [00:00<00:00, 1378.50it/s]
+Loading weights:   0%|          | 0/851 [00:00<?, ?it/s]Loading weights:  84%|████████▍ | 713/851 [00:00<00:00, 7127.92it/s]Loading weights: 100%|██████████| 851/851 [00:00<00:00, 7162.86it/s]
+[spec-multihop] lens=candidate: camilablank/workspace-lenses/qwen3.6-27b/j-lens/lens.pt
+[spec-multihop] wrote /workspace/j-lens-text-degradation/runs/eval-multihop-full-v2-a435763a2ada/swap_assignments_top10_excluded.json (top-10-excluding assignment)
+[spec-multihop] [candidate] 32 eligible items (has a swap target)
+[spec-multihop] [candidate] atomic-79-symbol: done
+[spec-multihop] [candidate] firstletter-valentines-month: done
+[spec-multihop] [candidate] bf-boot-capital: done
+[spec-multihop] [candidate] bf-eiffel-currency: done
+[spec-multihop] [candidate] bf-giza-continent: done
+[spec-multihop] [candidate] bf-madrid-language: done
+[spec-multihop] [candidate] bf-moonwalk-firstname: done
+[spec-multihop] [candidate] bf-rio2016-language: done
+[spec-multihop] [candidate] bf-sushi-capital: done
+[spec-multihop] [candidate] b3-mh-acropolis-capital: done
+[spec-multihop] [candidate] b3-mh-buenosaires-language: done
+[spec-multihop] [candidate] b3-mh-colosseum-capital: done
+[spec-multihop] [candidate] b3-mh-eiffel-capital: done
+[spec-multihop] [candidate] b3-mh-fjords-capital: done
+[spec-multihop] [candidate] b3-mh-guinness-capital: done
+[spec-multihop] [candidate] b3-mh-kilts-capital: done
+[spec-multihop] [candidate] b3-mh-kremlin-language: done
+[spec-multihop] [candidate] b3-mh-lisbon-language: done
+[spec-multihop] [candidate] b3-mh-nokia-capital: done
+[spec-multihop] [candidate] b3-mh-sphinx-capital: done
+[spec-multihop] [candidate] b3-mh-tulips-capital: done
+[spec-multihop] [candidate] firstletter-halloween-month: done
+[spec-multihop] [candidate] super-smallest-continent: done
+[spec-multihop] [candidate] bf-eiffel-continent: done
+[spec-multihop] [candidate] bf-kangaroo-capital: done
+[spec-multihop] [candidate] bf-mapleleaf-capital: done
+[spec-multihop] [candidate] bf-olympia-language: done
+[spec-multihop] [candidate] b3-mh-ikea-capital: done
+[spec-multihop] [candidate] b3-mh-lego-capital: done
+[spec-multihop] [candidate] bf-colosseum-language: done
+[spec-multihop] [candidate] bf-relativity-firstname: done
+[spec-multihop] [candidate] bf-tajmahal-continent: done
+[spec-multihop] [candidate] BAND (24, 59) intermediate: {'flip_rate': 0.0, 'mean_delta_prob': -0.0003784399559224634, 'n': 32}
+[spec-multihop] [candidate] BAND (24, 59) answer: {'flip_rate': 0.21875, 'mean_delta_prob': 0.21647231391766297, 'n': 32}
+[spec-multihop] [candidate] SWEEP peak_flip_rate: {'intermediate': 0.0, 'answer': 0.21875}
+[spec-multihop] [candidate] SWEEP onset_relative: {'intermediate': None, 'answer': (24, 59, 0.21875, 0.21647231391766297, 32)}
+[spec-multihop] [candidate] SWEEP depth_gap_pct_relative: None
+[spec-multihop] [candidate] SWEEP dominance verdict: True
+[spec-multihop] lens=rlens: camilablank/workspace-lenses/qwen3.6-27b/r-lens/lens.pt
+[spec-multihop] wrote /workspace/j-lens-text-degradation/runs/eval-multihop-full-v2-a435763a2ada/swap_assignments_top10_excluded.json (top-10-excluding assignment)
+[spec-multihop] [rlens] 32 eligible items (has a swap target)
+[spec-multihop] [rlens] atomic-79-symbol: done
+[spec-multihop] [rlens] firstletter-valentines-month: done
+[spec-multihop] [rlens] bf-boot-capital: done
+[spec-multihop] [rlens] bf-eiffel-currency: done
+[spec-multihop] [rlens] bf-giza-continent: done
+[spec-multihop] [rlens] bf-madrid-language: done
+[spec-multihop] [rlens] bf-moonwalk-firstname: done
+[spec-multihop] [rlens] bf-rio2016-language: done
+[spec-multihop] [rlens] bf-sushi-capital: done
+[spec-multihop] [rlens] b3-mh-acropolis-capital: done
+[spec-multihop] [rlens] b3-mh-buenosaires-language: done
+[spec-multihop] [rlens] b3-mh-colosseum-capital: done
+[spec-multihop] [rlens] b3-mh-eiffel-capital: done
+[spec-multihop] [rlens] b3-mh-fjords-capital: done
+[spec-multihop] [rlens] b3-mh-guinness-capital: done
+[spec-multihop] [rlens] b3-mh-kilts-capital: done
+[spec-multihop] [rlens] b3-mh-kremlin-language: done
+[spec-multihop] [rlens] b3-mh-lisbon-language: done
+[spec-multihop] [rlens] b3-mh-nokia-capital: done
+[spec-multihop] [rlens] b3-mh-sphinx-capital: done
+[spec-multihop] [rlens] b3-mh-tulips-capital: done
+[spec-multihop] [rlens] firstletter-halloween-month: done
+[spec-multihop] [rlens] super-smallest-continent: done
+[spec-multihop] [rlens] bf-eiffel-continent: done
+[spec-multihop] [rlens] bf-kangaroo-capital: done
+[spec-multihop] [rlens] bf-mapleleaf-capital: done
+[spec-multihop] [rlens] bf-olympia-language: done
+[spec-multihop] [rlens] b3-mh-ikea-capital: done
+[spec-multihop] [rlens] b3-mh-lego-capital: done
+[spec-multihop] [rlens] bf-colosseum-language: done
+[spec-multihop] [rlens] bf-relativity-firstname: done
+[spec-multihop] [rlens] bf-tajmahal-continent: done
+[spec-multihop] [rlens] BAND (24, 59) intermediate: {'flip_rate': 0.0, 'mean_delta_prob': -0.0003784399559230294, 'n': 32}
+[spec-multihop] [rlens] BAND (24, 59) answer: {'flip_rate': 0.28125, 'mean_delta_prob': 0.27891243546405065, 'n': 32}
+[spec-multihop] [rlens] SWEEP peak_flip_rate: {'intermediate': 0.0, 'answer': 0.28125}
+[spec-multihop] [rlens] SWEEP onset_relative: {'intermediate': None, 'answer': (24, 59, 0.28125, 0.27891243546405065, 32)}
+[spec-multihop] [rlens] SWEEP depth_gap_pct_relative: None
+[spec-multihop] [rlens] SWEEP dominance verdict: True
+[spec-multihop] wrote /workspace/j-lens-text-degradation/runs/causal-spec-conformance-v2-multihop/spec_alpha2_multihop.json
+[spec-multihop] wrote /workspace/j-lens-text-degradation/runs/20260919T124202Z-spec_conformance_multihop/provenance.json

@@ -1,38 +1,17 @@
 [project]
-name = "typo-readout-replication"
-version = "0.1.0"
-description = "Replication of the typo readout eval (Gurnee et al. 2026, 'Verbalizable Representations Form a Global Workspace in Language Models') on open-weight Qwen models, using the pre-fitted Jacobian lens."
+name = "jlens-causal-multihop"
+version = "1.0.0"
+description = "Corrected broad-band J-lens/R-lens causal multihop experiments on Qwen3.6-27B and Gemma 3 27B-it."
 readme = "README.md"
-requires-python = ">=3.12,<3.13"  # workspace-bench pins >=3.12; jlens only needs >=3.10
-license = { text = "MIT" }
-
+requires-python = ">=3.12,<3.13"
 dependencies = [
-    # --- Anthropic's reference J-lens implementation. Pinned to a commit, not a branch:
-    # this is an unmaintained reference impl and the brief forbids fitting a lens, so we want
-    # the exact `apply`/`from_pretrained` behavior we inspected, not whatever `main` becomes.
-    "jlens @ git+https://github.com/anthropics/jacobian-lens@581d398613e5602a5af361e1c34d3a92ea82ba8e",
-    # --- the frozen item banks + the upstream scorer (word+exact matcher, permutation-chance
-    # rollup). We call into this rather than reimplementing scoring, per the brief.
-    #
-    # NOT installed from git as an ordinary wheel: workspace-bench's own bank loader resolves
-    # the frozen bank paths as `Path(__file__).resolve().parents[4]` (see
-    # src/global_workspace/olens_suite/bank/loader.py) -- i.e. it assumes its installed package
-    # files still sit inside a real checkout of the repo, four directories under the repo root
-    # that also holds baseline_evals/. A `pip install` from a git URL builds a wheel and copies
-    # files into site-packages, which breaks that assumption silently (imports fine, bank
-    # lookups resolve to the wrong path). `scripts/setup_env.sh` clones the repo into
-    # external/workspace-bench (pinned commit, gitignored) instead; [tool.uv.sources] below
-    # points this dependency at that local editable checkout, so `global_workspace.__file__`
-    # stays inside the real repo tree.
-    "workspace-bench",
-    "torch>=2.11,<3",
-    "transformers>=5.11.0,<6",
-    "accelerate>=1.0",
-    "huggingface-hub>=1.18.0",
-    "numpy>=2.1",
-    "pyarrow>=18.0",     # parquet output for Stage D rows
-    "pyyaml>=6.0",
-    "matplotlib>=3.9",   # per-layer curve plots for the Stage F report
+  "jlens @ git+https://github.com/anthropics/jacobian-lens@581d398613e5602a5af361e1c34d3a92ea82ba8e",
+  "torch>=2.11,<3",
+  "transformers>=5.11.0,<6",
+  "accelerate>=1.0",
+  "huggingface-hub>=1.18.0",
+  "numpy>=2.1",
+  "pyyaml>=6.0",
 ]
 
 [project.optional-dependencies]
@@ -46,11 +25,7 @@ build-backend = "hatchling.build"
 packages = ["src/typo_readout"]
 
 [tool.hatch.metadata]
-allow-direct-references = true  # jlens is pinned to a git commit, not a PyPI release
+allow-direct-references = true
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
-
-[tool.uv.sources]
-# See the dependency comment above: must stay a local editable checkout, not a git wheel build.
-workspace-bench = { path = "external/workspace-bench", editable = true }

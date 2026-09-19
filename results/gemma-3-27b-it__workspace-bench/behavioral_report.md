@@ -1,0 +1,97 @@
+# Stage C — behavioral pre-check
+
+Model: `google/gemma-3-27b-it`
+Mode: plain completion of the item's own prompt (no chat template), scored against `target`. No one-hop sub-check: the bank provides no one-hop prompt field (see Stage A characterization) -- retention below confirms end-to-end composability only, not hop-by-hop factual knowledge.
+Pass rule: greedy answer names the target AND >= 8/10 sampled answers (temp=0.7) name it.
+
+## Retention rate: 53/85 = 62.4%
+
+Scored analysis (Stage D) runs on the passing subset only -- items the model cannot solve have no latent intermediate to find and only add noise. A low retention rate is a finding, not something to fix by loosening this check.
+
+| item | target | greedy pass | sampled pass | overall |
+|---|---|:---:|---:|:---:|
+| atomic-26-symbol | 'Fe' | ✓ | 8/10 | FAIL |
+| atomic-79-symbol | 'Au' | ✓ | 8/10 | FAIL |
+| birthstone-emerald-month | '5' | ✓ | 6/10 | FAIL |
+| chem-organic-Z | '6' | ✓ | 10/10 | PASS |
+| chem-photosynthesis-Z | '8' | ✓ | 10/10 | PASS |
+| dbl-altitude-antonym | 'low' | ✗ | 0/10 | FAIL |
+| etym-caesar-monthnum | '7' | ✓ | 10/10 | PASS |
+| firstletter-valentines-month | 'F' | ✓ | 10/10 | PASS |
+| func-filters-count | '2' | ✓ | 10/10 | PASS |
+| func-pumps-chambers | '4' | ✓ | 10/10 | PASS |
+| holiday-independence-monthnum | '7' | ✓ | 10/10 | PASS |
+| holiday-valentines-monthnum | '2' | ✓ | 10/10 | PASS |
+| inv-antarctica-opposite | 'north' | ✗ | 1/10 | FAIL |
+| inv-roots-opposite | 'up' | ✓ | 10/10 | PASS |
+| inv-sunrise-opposite | 'west' | ✗ | 1/10 | FAIL |
+| month-7-namedafter | 'Caesar' | ✓ | 10/10 | FAIL |
+| nhop-cube-element | 'carbon' | ✗ | 0/10 | FAIL |
+| nhop-rainbow-element | 'nitrogen' | ✗ | 0/10 | FAIL |
+| nhop-spider-element | 'oxygen' | ✗ | 0/10 | FAIL |
+| pred-valentines-prevmonth | 'January' | ✓ | 10/10 | PASS |
+| rhyme-tree-squared | '9' | ✗ | 0/10 | FAIL |
+| spaceneedle-border | 'Canada' | ✗ | 0/10 | FAIL |
+| spider-legs | '8' | ✓ | 10/10 | PASS |
+| violin-strings | '4' | ✓ | 10/10 | PASS |
+| bf-boot-capital | 'Rome' | ✓ | 10/10 | PASS |
+| bf-bordeaux-fruit | 'grape' | ✗ | 3/10 | FAIL |
+| bf-christmas-season | 'winter' | ✓ | 9/10 | PASS |
+| bf-eiffel-currency | 'euro' | ✓ | 10/10 | FAIL |
+| bf-fuji-ocean | 'Pacific' | ✓ | 10/10 | PASS |
+| bf-giza-continent | 'Africa' | ✓ | 10/10 | PASS |
+| bf-kathmandu-mountain | 'Everest' | ✗ | 0/10 | FAIL |
+| bf-madrid-language | 'Spanish' | ✓ | 10/10 | PASS |
+| bf-moonwalk-firstname | 'Neil' | ✓ | 10/10 | PASS |
+| bf-rio2016-language | 'Portuguese' | ✓ | 10/10 | PASS |
+| bf-southpole-bird | 'penguin' | ✓ | 10/10 | PASS |
+| bf-sphinx-river | 'Nile' | ✓ | 10/10 | PASS |
+| bf-sushi-capital | 'Tokyo' | ✓ | 10/10 | PASS |
+| b3-mh-acropolis-capital | 'Athens' | ✓ | 10/10 | PASS |
+| b3-mh-buenosaires-language | 'Spanish' | ✓ | 10/10 | PASS |
+| b3-mh-colosseum-capital | 'Rome' | ✓ | 10/10 | PASS |
+| b3-mh-cuckoo-mountains | 'Alps' | ✗ | 4/10 | FAIL |
+| b3-mh-eiffel-capital | 'Paris' | ✓ | 10/10 | PASS |
+| b3-mh-fjords-capital | 'Oslo' | ✓ | 10/10 | PASS |
+| b3-mh-fuji-currency | 'yen' | ✓ | 7/10 | FAIL |
+| b3-mh-gravity-fruit | 'apple' | ✓ | 10/10 | PASS |
+| b3-mh-greatwall-river | 'Yangtze' | ✓ | 10/10 | PASS |
+| b3-mh-guinness-capital | 'Dublin' | ✓ | 10/10 | PASS |
+| b3-mh-kangaroo-ocean | 'Indian' | ✓ | 10/10 | PASS |
+| b3-mh-kilts-capital | 'Edinburgh' | ✓ | 10/10 | PASS |
+| b3-mh-kremlin-language | 'Russian' | ✓ | 10/10 | PASS |
+| b3-mh-lisbon-language | 'Portuguese' | ✓ | 10/10 | PASS |
+| b3-mh-longestriver-sea | 'Mediterranean' | ✗ | 0/10 | FAIL |
+| b3-mh-nokia-capital | 'Helsinki' | ✓ | 10/10 | PASS |
+| b3-mh-samba-river | 'Amazon' | ✓ | 10/10 | PASS |
+| b3-mh-sphinx-capital | 'Cairo' | ✓ | 9/10 | PASS |
+| b3-mh-tajmahal-river | 'Ganges' | ✓ | 4/10 | FAIL |
+| b3-mh-tulips-capital | 'Amsterdam' | ✓ | 10/10 | PASS |
+| b3-mh-zeus-country | 'Greece' | ✓ | 10/10 | PASS |
+| basketball-players | '5' | ✓ | 10/10 | PASS |
+| carnival-ocean | 'Atlantic' | ✗ | 2/10 | FAIL |
+| dual-stars-visible-opposite | 'day' | ✗ | 0/10 | FAIL |
+| firstletter-greatwall-country | 'C' | ✗ | 1/10 | FAIL |
+| firstletter-halloween-month | 'O' | ✓ | 10/10 | PASS |
+| super-smallest-continent | 'Europe' | ✗ | 1/10 | FAIL |
+| bf-eiffel-continent | 'Europe' | ✓ | 9/10 | PASS |
+| bf-kangaroo-capital | 'Canberra' | ✓ | 10/10 | PASS |
+| bf-mapleleaf-capital | 'Ottawa' | ✓ | 10/10 | PASS |
+| bf-olympia-language | 'Greek' | ✗ | 0/10 | FAIL |
+| b3-mh-ikea-capital | 'Stockholm' | ✓ | 10/10 | PASS |
+| b3-mh-lego-capital | 'Copenhagen' | ✓ | 10/10 | PASS |
+| b3-mh-operahouse-country | 'Australia' | ✓ | 10/10 | PASS |
+| b3-mh-pizza-continent | 'Europe' | ✓ | 10/10 | PASS |
+| b3-mh-tallest-continent | 'Asia' | ✓ | 10/10 | PASS |
+| colosseum-currency | 'Euro' | ✗ | 3/10 | FAIL |
+| dbl-armistice-antonym | 'peace' | ✗ | 0/10 | FAIL |
+| dual-photosynthesis-opposite | 'night' | ✓ | 5/10 | FAIL |
+| firstletter-populous-country | 'C' | ✗ | 1/10 | FAIL |
+| roman-rings-olympic | 'V' | ✗ | 0/10 | FAIL |
+| bf-colosseum-language | 'Italian' | ✓ | 9/10 | PASS |
+| bf-greatwall-language | 'Mandarin' | ✗ | 5/10 | FAIL |
+| bf-nile-desert | 'Sahara' | ✓ | 10/10 | PASS |
+| bf-relativity-firstname | 'Albert' | ✓ | 9/10 | PASS |
+| bf-tajmahal-continent | 'Asia' | ✓ | 7/10 | FAIL |
+| b3-mh-aztec-language | 'Spanish' | ✗ | 0/10 | FAIL |
+| b3-mh-windycity-state | 'Illinois' | ✓ | 10/10 | PASS |

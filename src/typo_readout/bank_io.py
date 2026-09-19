@@ -22,11 +22,11 @@ from typo_readout.config import REPO_ROOT, Config
 from typo_readout.config import BankConfig
 from typo_readout.provenance import ArtifactRecord
 
-EXTERNAL_WORKSPACE_BENCH = REPO_ROOT / "external" / "workspace-bench"
+EXTERNAL_WORKSPACE_BENCH = REPO_ROOT / "datasets"
 
 
 def bank_file_path(bank: BankConfig) -> Path:
-    path = EXTERNAL_WORKSPACE_BENCH / bank.path
+    path = EXTERNAL_WORKSPACE_BENCH / "workspace_bench_multihop.json"
     if not path.is_file():
         raise FileNotFoundError(
             f"{path} not found -- did you run scripts/setup_env.sh? "
@@ -64,7 +64,7 @@ def load_retained_items(config: Config) -> tuple[list[dict[str, Any]], int]:
     all_items = load_items(config.bank)
     subset = all_items if config.bank.n_items is None else all_items[: config.bank.n_items]
 
-    behavioral_path = REPO_ROOT / "runs" / f"behavioral-{config.run.tier}" / "behavioral_results.jsonl"
+    behavioral_path = REPO_ROOT / "results/qwen3.6-27b__workspace-bench/behavioral_results.jsonl"
     if not behavioral_path.is_file():
         raise FileNotFoundError(
             f"{behavioral_path} not found -- run scripts/run_behavioral.py against this "
@@ -74,6 +74,8 @@ def load_retained_items(config: Config) -> tuple[list[dict[str, Any]], int]:
     with behavioral_path.open() as f:
         for line in f:
             r = json.loads(line)
+            if config.bank.family == "multihop" and r["stage_c_pass"] and r.get("first_token_correct") is not True:
+                raise ValueError("Stale behavioral results: rerun the v2 first-token gate")
             if r["stage_c_pass"]:
                 passing_names.add(r["name"])
 

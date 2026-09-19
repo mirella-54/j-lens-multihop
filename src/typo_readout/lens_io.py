@@ -90,4 +90,6 @@ def load_lens(lens: LensConfig) -> JacobianLens:
                 f"config.lens.layers={lens.layers} requests layers {missing} not in this "
                 f"lens's source_layers={jlens_obj.source_layers}"
             )
+    if lens.layers is not None:
+        jlens_obj.source_layers = sorted(set(lens.layers))
     return jlens_obj

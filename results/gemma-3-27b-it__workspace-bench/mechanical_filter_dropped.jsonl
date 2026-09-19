@@ -1,0 +1,15 @@
+{"name": "chem-bones-Z", "_drop_reason": "target='20' single_token=False; intermediates='calcium' single_token=True"}
+{"name": "double-dice-faces", "_drop_reason": "target='12' single_token=False; intermediates='6' single_token=True"}
+{"name": "half-clock-hours", "_drop_reason": "target='6' single_token=True; intermediates='12' single_token=False"}
+{"name": "holiday-christmas-monthnum", "_drop_reason": "target='12' single_token=False; intermediates='December' single_token=True"}
+{"name": "holiday-halloween-monthnum", "_drop_reason": "target='10' single_token=False; intermediates='October' single_token=True"}
+{"name": "bf-stopsign-sides", "_drop_reason": "target='8' single_token=False; intermediates='octagon' single_token=True"}
+{"name": "bf-whitebear-ocean", "_drop_reason": "target='Arctic' single_token=True; intermediates='polar bear' single_token=False"}
+{"name": "b3-mh-bakerstreet-city", "_drop_reason": "target='London' single_token=True; intermediates='Sherlock Holmes' single_token=False"}
+{"name": "b3-mh-blindpoet-epic", "_drop_reason": "target='Iliad' single_token=False; intermediates='Homer' single_token=True"}
+{"name": "b3-mh-goldengate-ocean", "_drop_reason": "target='Pacific' single_token=True; intermediates='San Francisco' single_token=False"}
+{"name": "b3-mh-griffithobservatory-state", "_drop_reason": "target='California' single_token=True; intermediates='Los Angeles' single_token=False"}
+{"name": "b3-mh-kiwi-capital", "_drop_reason": "target='Wellington' single_token=True; intermediates='New Zealand' single_token=False"}
+{"name": "b3-mh-liberty-river", "_drop_reason": "target='Hudson' single_token=True; intermediates='New York' single_token=False"}
+{"name": "nhop-soccer-element", "_drop_reason": "target='sodium' single_token=True; intermediates='11' single_token=False"}
+{"name": "b3-mh-redplanet-moons", "_drop_reason": "target='2' single_token=False; intermediates='Mars' single_token=True"}

@@ -1,0 +1,103 @@
+# Multihop / causal-swap full-tier config -- the pod run. Everything except model/lens/
+# bank.n_items should match config/multihop-smoke.qwen3.5-0.8b.yaml; see that file's
+# comments for the single-token retention finding and the Stage C placeholder note.
+run:
+  tier: multihop-full
+  seed: 0
+
+model:
+  hf_repo: "Qwen/Qwen3.6-27B"     # NOT 3.5 -- hard constraint, double-checked against the
+  revision: "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9"  # live HF repo (sha above) on 2026-09-08.
+  dtype: "bfloat16"
+  device: "auto"
+  trust_remote_code: false
+  auto_class: "auto"
+  chat_template:
+    enable_thinking: false
+
+gate:
+  identity_argmax_threshold: 0.85
+  identity_kl_threshold_nats: 0.5
+  identity_max_entropy_nats: 0.75
+  identity_min_samples: 30
+  early_layer_fraction: 0.3333
+
+lens:
+  repo: "neuronpedia/jacobian-lens"
+  revision: "0731326edff4ae730ffc5356fe1a4728c748b3a6"
+  filename: "qwen3.6-27b/jlens/Salesforce-wikitext/Qwen3.6-27B_jacobian_lens_n1000.pt"
+  layers: null
+
+bank:
+  hf_dataset: "camilablank/workspace-bench"
+  hf_dataset_revision: "4d2268589ec56dbe4024598deb0480828e59f85e"
+  git_repo: "camilablank/workspace-bench"
+  git_commit: "84e3a2d67a2517d28891f9b6153863ec4bd6c825"
+  family: "multihop"
+  path: "baseline_evals/single_token/lens-eval-multihop.json"
+  n_items: null   # full tier: all 100 frozen items (mechanical + behavioral filters apply downstream)
+  eval_render: "plain"
+  read_position: { kind: "final_prompt_token", offsets: [-1] }
+  scored_field: "intermediates"
+  permutation_chance_ref: null
+  # See config/multihop-smoke.qwen3.5-0.8b.yaml for the full rationale.
+  single_token_required_fields: ["target", "intermediates"]
+
+stage_c_behavioral:
+  enabled: true
+  # See config/multihop-smoke.qwen3.5-0.8b.yaml for the full rationale (plain completion,
+  # no one-hop sub-check available in this bank).
+  mode: "plain_completion"
+  scored_field: "target"
+  max_new_tokens: 12
+  chat_enable_thinking: false
+  verification_template: ""
+  n_trials: 10
+  temperature: 0.7
+  pass_threshold: 8
+
+controls:
+  logit_lens: true
+  next_token_dominance: true
+  null_control: "permutation"
+  permutation:
+    n_donors: 20
+    seed: 0
+
+scoring:
+  primary_metric: "harmonic_mean_rank"
+  pass_at_k: [1, 5, 10]
+  chance_multiple_required: 3.0
+  workspace_band_pct: [33, 92]
+
+# Stage E: the coordinate-swap causal experiment. Qwen3.6-27B has 64 layers (vs the
+# smoke model's 24) -- these window values are carried over UNSCALED from the smoke
+# config as a placeholder, not a considered choice for this depth. Revisit before the pod
+# run: unscaled gives ~30 windows (finer resolution, more forward passes -- the sweep is
+# the expensive part of the run, per the pod cost estimate) vs. scaling proportionally
+# (~width 10-11, step 5-6) for a similar window COUNT to the smoke run at coarser
+# resolution. Whichever is chosen must be fixed here BEFORE the pod run, not after seeing
+# results.
+causal:
+  window_width: 4
+  window_step: 2
+  effect_threshold: 0.5   # ORIGINAL pre-registered absolute threshold; kept only for the
+                           # historical pre-fix run's onset/depth-gap numbers -- see
+                           # runs/causal-multihop-full/controls_report.md and CausalConfig's
+                           # docstring. Not used for the corrected run's headline onset.
+  onset_relative_fraction: 0.5   # POST-HOC addition (2026-09-09, causal validation task
+                                  # section 4): onset = first window reaching this fraction
+                                  # of that swap type's OWN peak flip rate. Chosen to mirror
+                                  # the original 0.5 in spirit ("halfway to full effect")
+                                  # without requiring an absolute rate the model may never
+                                  # reach; the full per-window curves remain the primary
+                                  # output regardless of this choice.
+  alpha: 1.0
+  n_items_cap: null
+
+jlens_pkg:
+  git_repo: "anthropics/jacobian-lens"
+  git_commit: "581d398613e5602a5af361e1c34d3a92ea82ba8e"
+
+output:
+  run_dir: "runs/{run_id}"
